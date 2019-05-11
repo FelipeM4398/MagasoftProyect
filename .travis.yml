@@ -1,8 +1,11 @@
 language: node_js
-
 node_js:
-  - node
-
+  - node  
+branches:
+  only:
+    - master
+install:
+  - npm install -g @angular/cli
 script:
   - cd frontend
-  - npm run build --prod
+  - ng build --prod
