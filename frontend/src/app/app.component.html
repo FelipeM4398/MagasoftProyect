@@ -1,5 +1,13 @@
-<div *ngIf="loaded" style="text-align: center;">
-  {{ users | json }}
+<div style="text-align: center;">
+
+  <label>Buscar usuario:</label>
+  <input type="text" [formControl]="identification" placeholder="Identificación">
+  <button (click)="getUserByIdentification()">Buscar</button>
+
+  <div *ngIf="loaded">
+    {{ user | json }}
+  </div>
+  
 </div>
 
 <router-outlet></router-outlet>

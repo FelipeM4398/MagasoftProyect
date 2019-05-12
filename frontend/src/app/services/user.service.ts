@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../_interfaces/user';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,7 +18,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAdminUsers(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}adminstrator/getUsers`, httpOptions);
+  getUserByIdentification(identification: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}adminstrator/${identification}`, httpOptions);
   }
 }
