@@ -10,4 +10,6 @@ branches:
 script:
   - cd frontend
   - npm install
+  - ng test
+  - ng lint
   - ng build --prod
