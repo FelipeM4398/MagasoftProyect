@@ -1,13 +1,43 @@
 language: node_js
 
 node_js:
-  - node  
+  - node 
+
+jdk:
+  - oraclejdk8 
+
+services: 
+  - mysql
+
+addons: 
+  sonarcloud: true
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
+notifications:
+  email: false
 
 branches:
   only:
     - master
+
+before_script:
+  - mysql -e 'CREATE DATABASE MAGAZINE;'
+  - mysql -e 'USE MAGAZINE';
   
 script:
-  - cd frontend
+  - cd backend
   - npm install
+  - npm run migration:create
+  - npm run migration:run
+  - npm run test 
+  - cd ../frontend
+  - npm install
+  - ng lint
+  - ng test
   - ng build --prod
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=felipem4398-github -Dsonar.projectKey=FelipeM4398_MagasoftProyect -Dsonar.sources='./frontend/src' -X
