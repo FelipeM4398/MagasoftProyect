@@ -1,0 +1,60 @@
+{
+	"name": "backendmagazine",
+	"version": "1.0.0",
+	"description": "Backend para api-rest de revista magazine",
+	"main": "index.js",
+	"scripts": {
+		"tsc": "tsc",
+		"test": "mocha --timeout 10000 --require ts-node/register test/**/*.ts",
+		"test:coveralls": "mocha --coverage --coverageReportest=text-lcov | coveralls",
+		"start": "tsc && node build/index.js",
+		"dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts    ",
+		"prod": "tsc && node ./build/app.js",
+		"migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
+		"migration:revert": " ts-node ./node_modules/.bin/typeorm migration:revert",
+		"migration:create": "ts-node ./node_modules/.bin/typeorm migration:generate -n Migration",
+		"lint": "standard"
+	},
+	"author": "Luis Bonilla",
+	"license": "MIT",
+	"dependencies": {
+		"@types/body-parser": "^1.17.0",
+		"@types/express": "^4.16.1",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.18.3",
+		"express": "^4.16.4",
+		"mysql": "^2.17.1",
+		"node-pre-gyp": "^0.13.0",
+		"reflect-metadata": "^0.1.13",
+		"ts-node": "^8.1.0",
+		"typeorm": "^0.2.16",
+		"typescript": "^3.4.4"
+	},
+	"devDependencies": {
+		"@types/chai": "^4.1.7",
+		"@types/chai-http": "^4.2.0",
+		"@types/jest": "^24.0.12",
+		"@types/mocha": "^5.2.6",
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"cors": "^2.8.5",
+		"coveralls": "^3.0.3",
+		"eslint-plugin-typescript": "^0.14.0",
+		"istanbul": "^0.4.5",
+		"mocha": "^6.1.4",
+		"morgan": "^1.9.1",
+		"nodemon": "^1.18.11",
+		"standard": "^12.0.1",
+		"supertest": "^4.0.2",
+		"ts-jest": "^24.0.2",
+		"tslint": "^5.16.0",
+		"tslint-config-standard": "^8.0.1",
+		"typescript-eslint-parser": "^22.0.0"
+	},
+	"standard": {
+		"parser": "eslint-plugin-typescript",
+		"plugins": [
+			"typescript"
+		]
+	}
+}

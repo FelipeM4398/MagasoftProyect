@@ -1,0 +1,12 @@
+{
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "git.ignoreLimitWarning": true,
+    "eslint.enable": false
+=======
+    "git.ignoreLimitWarning": true
+>>>>>>> backend
+=======
+    "git.ignoreLimitWarning": true
+>>>>>>> backend
+}
