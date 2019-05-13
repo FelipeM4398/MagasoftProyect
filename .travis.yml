@@ -34,7 +34,6 @@ script:
   - npm install
   - npm run migration:create
   - npm run migration:run
-  - npm run test --watch=false
   - cd ../frontend
   - npm install
   - ng lint
