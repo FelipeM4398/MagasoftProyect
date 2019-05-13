@@ -40,7 +40,7 @@ describe('UserService', () => {
       }
     );
 
-    const req = httpMock.expectOne('http://localhost:3000/adminstrator/1144205319');
+    const req = httpMock.expectOne('http://localhost:3000/adminstrator/getUser/1144205319');
     expect(req.request.method).toBe('GET');
     req.flush(dummyUser);
   });

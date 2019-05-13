@@ -19,6 +19,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserByIdentification(identification: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}adminstrator/${identification}`, httpOptions);
+    return this.http.get<User>(`${this.apiUrl}adminstrator/getUser/${identification}`, httpOptions);
   }
 }
