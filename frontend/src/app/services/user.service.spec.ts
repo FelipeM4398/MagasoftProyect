@@ -23,13 +23,14 @@ describe('UserService', () => {
 
   it ('should return an Observable<User>', () => {
     const service: UserService = TestBed.get(UserService);
+    const password = '1111'
     const dummyUser = { id: 1,
                         name: 'Felipe',
                         lastName: 'Muñoz',
                         birthDate: new Date(),
                         identification: '1144205319',
                         email: 'luisf4398@hotmail.com',
-                        password: '1234',
+                        password,
                         type: 'lector'
                         };
     const identification = '1144205319';
