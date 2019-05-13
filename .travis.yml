@@ -37,7 +37,12 @@ script:
   - npm run test 
   - cd ../frontend
   - npm install
+<<<<<<< HEAD
   - ng lint
   - ng test
+=======
+  - ng test
+  - ng lint
+>>>>>>> 2582128d4b0a57869097c4a08c0acf8d701293ce
   - ng build --prod
   - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=felipem4398-github -Dsonar.projectKey=FelipeM4398_MagasoftProyect -Dsonar.sources='./frontend/src' -X
