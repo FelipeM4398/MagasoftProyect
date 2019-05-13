@@ -39,4 +39,4 @@ script:
   - ng lint
   - ng test
   - ng build --prod
-  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=felipem4398-github -Dsonar.projectKey=FelipeM4398_MagasoftProyect -Dsonar.sources='./frontend/src' -X
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=felipem4398-github -Dsonar.projectKey=FelipeM4398_MagasoftProyect -Dsonar.sources='./src' -X
