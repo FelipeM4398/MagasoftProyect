@@ -1,0 +1,18 @@
+.container-login {
+    display: flex;
+    height: 100%;;
+    align-items: center;
+    justify-content: center;
+}
+.mat-card {
+    max-width: 15em;
+    height: min-content;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.mat-card-actions {
+    text-align: center;
+}
