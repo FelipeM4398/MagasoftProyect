@@ -6,24 +6,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { MatCardModule, MatInputModule, MatButtonModule, MatDividerModule, MatToolbarModule,
-          MatSidenavModule, MatMenuModule, MatIconModule } from '@angular/material';
-import { HeaderComponent } from './components/header/header.component';
+import {
+          MatCardModule, MatInputModule, MatButtonModule, MatDividerModule, MatToolbarModule,
+          MatSidenavModule, MatMenuModule, MatIconModule, MatListModule, MatExpansionModule,
+          MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+        } from '@angular/material';
 import { HomeComponent } from './components/administrator/home/home.component';
+import { RegistroAutorComponent } from './components/administrator/registro-autor/registro-autor.component';
+import { RegistroComiteComponent } from './components/administrator/registro-comite/registro-comite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent,
     HomeComponent,
+    RegistroAutorComponent,
+    RegistroComiteComponent,
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatButtonModule,
     AppRoutingModule, BrowserAnimationsModule, MatDividerModule, MatMenuModule,
-    HttpClientModule, MatToolbarModule, MatSidenavModule, MatIconModule
+    HttpClientModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule,
+    MatExpansionModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule,
   ],
-  providers: [],
+  providers: [ MatDatepickerModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,5 +3,16 @@
 }
 
 .mat-toolbar {
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.profile {
+    margin: 10px auto;
+    display: block;
+    border-radius: 50%;
+    width: 100px;
+}
+
+.mat-sidenav {
+    min-width: 170px;
 }

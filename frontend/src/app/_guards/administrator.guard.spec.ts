@@ -8,8 +8,4 @@ describe('AdministratorGuard', () => {
       providers: [AdministratorGuard]
     });
   });
-
-  it('should ...', inject([AdministratorGuard], (guard: AdministratorGuard) => {
-    expect(guard).toBeTruthy();
-  }));
 });

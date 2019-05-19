@@ -3,17 +3,43 @@
 
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
                  [opened]="!mobileQuery.matches && currentUser">
-                 Side nav
+
+        <img class="profile" src="https://via.placeholder.com/150">
+        <p *ngIf="currentUser" class="text-center">
+            <strong style="display: block">{{currentUser.nameUser}}</strong>
+            <small>{{currentUser.privilegesTypeUser}}</small>
+        </p>
+
+        <mat-nav-list *ngIf="currentUser">
+            <a mat-list-item routerLink="returnUrl(currentUser.privilegesTypeUser)">
+                <mat-icon mat-list-icon>home</mat-icon>
+                Home
+            </a>
+
+            <a mat-list-item [matMenuTriggerFor]="menu">
+                <mat-icon mat-list-icon>group</mat-icon>
+                Usuarios
+            </a>
+            <mat-menu #menu="matMenu" xPosition="after">
+                <button mat-menu-item routerLink="administrator/registrar/autor">Registrar autor</button>
+                <button mat-menu-item>Registrar miembro del comite</button>
+                <button mat-menu-item>Registrar evaluador</button>
+            </mat-menu>
+
+            <a mat-list-item (click)="snav.toggle(); logOut();">
+                <mat-icon mat-list-icon>close</mat-icon>
+                Salir
+            </a>
+         </mat-nav-list>
 
     </mat-sidenav>
     <mat-sidenav-content>
             
-        <mat-toolbar color="primary" class="example-toolbar" *ngIf="currentUser">
-                <button mat-icon-button (click)="snav.toggle()" *ngIf="mobileQuery.matches"><mat-icon>menu</mat-icon></button>
-            <button mat-button [matMenuTriggerFor]="menu">{{currentUser.nameUser}}</button>
-            <mat-menu #menu="matMenu">
-                <button (click)="logOut()" mat-menu-item>Logout</button>
-            </mat-menu>
+        <mat-toolbar class="mat-elevation-z1" *ngIf="currentUser">
+            <h2>Magasoft.</h2>
+            <button mat-icon-button (click)="snav.toggle()" *ngIf="mobileQuery.matches">
+                <mat-icon>menu</mat-icon>
+            </button>
         </mat-toolbar>
 
         <router-outlet></router-outlet>

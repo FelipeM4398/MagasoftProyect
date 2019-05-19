@@ -48,6 +48,14 @@ export class AuthService {
     this.currentUserSubject.next(null);
   }
 
+  returnUrl(rol: string): string {
+    if (rol === 'ADMINISTRADOR') {
+      return 'administrator/home';
+    } else if ( rol === 'AUTOR' ) {
+      return 'autor/home';
+    }
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

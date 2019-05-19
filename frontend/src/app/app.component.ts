@@ -21,11 +21,15 @@ export class AppComponent {
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.currentUserSubscription = this.authService.currentUser.subscribe((user: any) => {
       this.currentUser = user;
-  });
+    });
   }
 
   logOut() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  returnUrl(rol: string) {
+    console.log(this.authService.returnUrl(rol));
   }
 }

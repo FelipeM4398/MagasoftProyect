@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -39,15 +39,11 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       (data: any) => this.router.navigate([this.returnUrl(data.privilegesTypeUser)]),
-      error => swal('Error!', 'Email o contraseña incorrectos!', 'error'),
+      error => Swal.fire('Error', 'Credenciales incorrectas', 'error'),
     );
   }
 
-  returnUrl(rol: string): string {
-    if (rol === 'ADMINISTRADOR') {
-      return 'administrator/home';
-    } else if ( rol === 'AUTOR' ) {
-      return 'autor/home';
-    }
+  returnUrl(rol: string) {
+    return this.authService.returnUrl(rol);
   }
 }

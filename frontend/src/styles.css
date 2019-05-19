@@ -1,4 +1,5 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url(https://fonts.googleapis.com/icon?family=Roboto);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 * {
@@ -6,10 +7,19 @@
     padding: unset;
 }
 
+.text-center {
+    text-align: center;
+}
+
 html, body {
-    height: 100%;
+    height: 100vh !important;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .mat-card, .mat-raised-button, .mat-button {
     border-radius: unset !important;
+}
+
+.swal2-popup {
+    width: 20em !important;
 }
