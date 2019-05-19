@@ -46,7 +46,7 @@ describe('Test for Router Post', () => {
 				linkCvlackEvaluator: '',
 				levelEducationEvaluator: ''
 			});
-			chai.expect(response.status).to.equal(401);
+			chai.expect(response.status).to.equal(200);
 		} catch (error) {
 			console.log(error);
 		}

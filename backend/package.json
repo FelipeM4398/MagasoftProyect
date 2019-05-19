@@ -5,10 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"tsc": "tsc",
-		"test": "mocha --timeout 10000 --require ts-node/register test/**/*.ts",
+		"test": "mocha --timeout 10000 --require ts-node/register test/**/*.ts --exit",
 		"test:coveralls": "mocha --coverage --coverageReportest=text-lcov | coveralls",
 		"start": "tsc && node build/index.js",
-		"dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts    ",
+		"dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec ts-node src/index.ts    ",
 		"prod": "tsc && node ./build/app.js",
 		"migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
 		"migration:revert": " ts-node ./node_modules/.bin/typeorm migration:revert",

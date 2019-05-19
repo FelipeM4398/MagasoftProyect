@@ -16,8 +16,7 @@ export default class AdministratorService implements UserInterfaceService {
 	 * @memberof AdministratorService
 	 */
 	getUsers(objectUser): Object {
-		return getConnection().getRepository(objectUser).createQueryBuilder().select('user').from(User, 'user').getMany();
-	}
+		return getConnection().getRepository(objectUser).createQueryBuilder("user").getMany();	}
 
 	/**
      * Consult Type User
