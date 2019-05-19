@@ -1,13 +1,23 @@
-<div style="text-align: center;">
 
-  <label>Buscar usuario:</label>
-  <input type="text" [formControl]="identification" placeholder="Identificación">
-  <button (click)="getUserByIdentification()">Buscar</button>
+<mat-sidenav-container>
 
-  <div *ngIf="loaded">
-    {{ user | json }}
-  </div>
-  
-</div>
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+                 [opened]="!mobileQuery.matches && currentUser">
+                 Side nav
 
-<router-outlet></router-outlet>
+    </mat-sidenav>
+    <mat-sidenav-content>
+            
+        <mat-toolbar color="primary" class="example-toolbar" *ngIf="currentUser">
+                <button mat-icon-button (click)="snav.toggle()" *ngIf="mobileQuery.matches"><mat-icon>menu</mat-icon></button>
+            <button mat-button [matMenuTriggerFor]="menu">{{currentUser.nameUser}}</button>
+            <mat-menu #menu="matMenu">
+                <button (click)="logOut()" mat-menu-item>Logout</button>
+            </mat-menu>
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

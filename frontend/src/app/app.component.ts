@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { UserService } from './services/user.service';
-import { User } from './_interfaces/user';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth/auth.service';
+import { Subscription } from 'rxjs';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,21 @@ import { User } from './_interfaces/user';
 })
 export class AppComponent {
 
-  user: User;
-  loaded = false;
-  identification = new FormControl('');
+  currentUser: any;
+  currentUserSubscription: Subscription;
+  mobileQuery: MediaQueryList;
+  private mobileQueryListener: () => void;
 
-  constructor( public userService: UserService ) {}
+  constructor(private router: Router, private authService: AuthService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 36rem)');
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.currentUserSubscription = this.authService.currentUser.subscribe((user: any) => {
+      this.currentUser = user;
+  });
+  }
 
-  getUserByIdentification() {
-    this.userService.getUserByIdentification(this.identification.value).subscribe(
-      data => this.user = data,
-      error => console.error(error),
-      () => { this.loaded = true; console.log(this.user); }
-    );
+  logOut() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
