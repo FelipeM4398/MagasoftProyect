@@ -27,8 +27,8 @@ const handleMessage = (response, code, message) => response.status(code).json({ 
   * Endpoint for create author
   */
  administratorRouter.post('/createUser', async (request: Request, response: Response, next) => {
-	let { nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser, hodbed, typeUser, linkCvlackEvaluator, levelEducationEvaluator } = request.body;
-     
+    let { nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser, hodbed, typeUser, linkCvlackEvaluator, levelEducationEvaluator } = request.body;
+    console.log(nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser, hodbed, typeUser, linkCvlackEvaluator, levelEducationEvaluator);
     try {       
         const typeUserData = await administratorService.consultTypeUser(typeUser);
         const hodBedData = await administratorService.consultHotService(hodbed);

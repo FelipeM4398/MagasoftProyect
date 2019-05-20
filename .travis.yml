@@ -9,7 +9,8 @@ jdk:
 services: 
   - mysql
 
-addons: 
+addons:
+  sonarcloud: true
   apt:
     sources:
       - mysql-5.7-trusty
@@ -37,4 +38,5 @@ script:
   - cd ../frontend
   - npm install
   - ng lint
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=felipem4398-github -Dsonar.projectKey=FelipeM4398_MagasoftProyect -Dsonar.sources='./src' -X
   - ng build --prod

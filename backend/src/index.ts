@@ -7,10 +7,13 @@ import Morgan from 'morgan';
 import { createConnection } from 'typeorm';
 import adminstratorRoutes from './Routes/AdministratorRoutes';
 import Cors from 'cors';
+import authRouter from './Routes/AuthRoute';
+import AuthToken from './middlewares/AuthToken';
+import authorRouter from './Routes/AuthortRoute';
 /**
 * Herencia de express 
 */
-const app = Express()
+const app = Express();
 /**
 *Port
 */
@@ -22,11 +25,11 @@ const PORT = 3000;
 const corsOptions = {
 	origin: 'http://localhost:4200',
 	optionsSuccessStatus: 200
- } 
+};
 /**
 *Middleware
 */
-app.use(Cors(corsOptions))
+app.use(Cors(corsOptions));
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 app.use(Morgan('dev'));
@@ -34,11 +37,13 @@ app.use(Morgan('dev'));
 /****
  *Routes 
  */
+app.use('/auth', authRouter);
+app.use(AuthToken);
 app.use('/adminstrator', adminstratorRoutes);
-
+app.use('/author', authorRouter);
 /**
 *Servidor
 */
-createConnection().then(async (connection) => connection)	.catch((error) => console.log(error));
+createConnection().then(async (connection) => connection).catch((error) => console.log(error));
 
 export default app.listen(PORT, () => console.log(`http://localhost:${PORT}`));

@@ -4,6 +4,7 @@ import TypeUser from '../entity/TypeUserEntity';
 import User from '../entity/UserEntity';
 import Hotbed from '../entity/HotbedEntity';
 import {pbkdf2Sync} from 'crypto';
+import EmailService from './EmailService';
 
 export default class AdministratorService implements UserInterfaceService {
 
@@ -16,10 +17,11 @@ export default class AdministratorService implements UserInterfaceService {
 	 * @memberof AdministratorService
 	 */
 	getUsers(objectUser): Object {
-		return getConnection().getRepository(objectUser).createQueryBuilder("user").getMany();	}
+		return getConnection().getRepository(objectUser).find({relations: ['typeUser']});
+	}
 
 	/**
-     * Consult Type User
+     *  Method Consult Type User
      *
      * @param {*} privilegesTypeUser
      * @returns
@@ -49,7 +51,7 @@ export default class AdministratorService implements UserInterfaceService {
 
 	
 	/**
-	 * Get user
+	 * Method for Get user
 	 *
 	 * @param {string} identificationUser
 	 * @returns
@@ -65,29 +67,38 @@ export default class AdministratorService implements UserInterfaceService {
 
 	/**
      *
-     *Create user
+     * Method Create user
      * @memberof AuthorService
      */
 	createUser(nameUser: string, lastNameUser: string,  birthDateUser, identificationUser, emailUser: string,passwordUser: string, hodbed?, typeUser?, levelEducationEvaluator ? : string,  linkCvlackEvaluator ? : string): void {
+		const mail = new EmailService(emailUser, 'Welcome to Magasoft', `Welcome ${nameUser} ${lastNameUser} to Magasoft, your role is ${typeUser.privilegesTypeUser.toLocaleUpperCase()}` );
 		if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'AUTOR') {
 			getConnection().createQueryBuilder().insert().into(User) .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), hodbed, typeUser }).execute();
+			mail.sendEmail();
 		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'EVALUADOR') {
 			getConnection().createQueryBuilder().insert().into(User)
 			 .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), levelEducationEvaluator,  linkCvlackEvaluator, typeUser }).execute();
-		} else if(typeUser.privilegesTypeUser.toLocaleUpperCase() === 'MIEMBRO DEL COMITE') {
+			 mail.sendEmail();	
+			} else if(typeUser.privilegesTypeUser.toLocaleUpperCase() === 'MIEMBRO DEL COMITE') {
 			getConnection().createQueryBuilder().insert().into(User) .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), typeUser }).execute();
+			mail.sendEmail();	
 		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'LECTOR') {
 			getConnection().createQueryBuilder().insert().into(User) .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), typeUser }).execute();			
+			mail.sendEmail();
 		}
 	}
 
 	/**
 	 *
-	 *
+	 * Method for create hash
 	 * @memberof AdministratorService
 	 */
 	createHash (password: string) : string {
 		return pbkdf2Sync(password, 'salt', 100000, 35, 'sha512').toString('hex');
 	}
+
+	
+
+
 
 }

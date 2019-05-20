@@ -1,0 +1,30 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - node
+
+script:
+  - npm install
+  - npm run migration:create
+  - npm run migration:run
+  - npm run test 
+
+notifications:
+  email: false
+
+services: 
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
+before_install:
+  - mysql -e 'CREATE DATABASE MAGAZINE;'
+  - mysql -e 'USE MAGAZINE';
