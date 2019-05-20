@@ -1,3 +1,56 @@
-<p>
-  registro-comite works!
-</p>
+<h1 style="padding: 16px;">Registrar miembro del comité</h1>
+<div style="padding: 0 16px 16px 16px;">
+    <form [formGroup]="comiteForm">
+
+        <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Identificación" formControlName="identificationUser">
+            <mat-error *ngIf="identificationUser.hasError('required')">
+                La identificación es <strong>requerida</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Nombres" formControlName="nameUser">
+            <mat-error *ngIf="nameUser.hasError('required')">
+                El nombre es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Apellidos" formControlName="lastNameUser">
+            <mat-error *ngIf="lastNameUser.hasError('required')">
+                El apellido es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="picker" formControlName="birthDateUser" placeholder="Fecha de nacimiento">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="birthDateUser.hasError('required')">
+                La fecha es <strong>requerida</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="emailUser">
+            <mat-error *ngIf="emailUser.hasError('email') && !emailUser.hasError('required')">
+                Por favor ingrese un email válido
+            </mat-error>
+            <mat-error *ngIf="emailUser.hasError('required')">
+                El email es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" formControlName="passwordUser">
+            <mat-error *ngIf="passwordUser.hasError('required')">
+                Password es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+
+    <button [disabled]="comiteForm.invalid" mat-raised-button (click)="registerComite()">Registrar</button>
+    <button style="margin-left: 10px;" (click)="comiteForm.reset()" mat-raised-button>Cancelar</button>
+</div>

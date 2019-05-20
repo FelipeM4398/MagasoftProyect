@@ -1,13 +1,12 @@
 export interface User {
-    id: number;
     name: string;
     lastName: string;
-    birthDate: Date;
+    birthDate: string;
     identification: string;
     email: string;
     passwordUser: string;
     hodbed?: string;
-    type: string;
-    levelEducation?: string;
-    linkCvlack?: string;
+    typeUser: string;
+    linkCvlackEvaluator?: string;
+    levelEducationEvaluator?: string;
 }

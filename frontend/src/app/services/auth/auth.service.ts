@@ -52,7 +52,7 @@ export class AuthService {
     if (rol === 'ADMINISTRADOR') {
       return 'administrator/home';
     } else if ( rol === 'AUTOR' ) {
-      return 'autor/home';
+      return 'author/home';
     }
   }
 

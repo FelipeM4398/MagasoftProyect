@@ -16,15 +16,20 @@
                 Home
             </a>
 
-            <a mat-list-item [matMenuTriggerFor]="menu">
+            <a mat-list-item [matMenuTriggerFor]="menu" *ngIf="currentUser.privilegesTypeUser === 'ADMINISTRADOR'">
                 <mat-icon mat-list-icon>group</mat-icon>
                 Usuarios
             </a>
             <mat-menu #menu="matMenu" xPosition="after">
                 <button mat-menu-item routerLink="administrator/registrar/autor">Registrar autor</button>
-                <button mat-menu-item>Registrar miembro del comite</button>
-                <button mat-menu-item>Registrar evaluador</button>
+                <button mat-menu-item routerLink="administrator/registrar/comite">Registrar miembro del comite</button>
+                <button mat-menu-item mat-menu-item routerLink="administrator/registrar/evaluador">Registrar evaluador</button>
             </mat-menu>
+
+            <a mat-list-item *ngIf="currentUser.privilegesTypeUser === 'AUTOR'">
+                <mat-icon mat-list-icon>note_add</mat-icon>
+                Registrar articulo
+            </a>
 
             <a mat-list-item (click)="snav.toggle(); logOut();">
                 <mat-icon mat-list-icon>close</mat-icon>

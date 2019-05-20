@@ -18,6 +18,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  createUser(user: User, token: string): Observable<any> {
+    httpOptions.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: token,
+    });
+    return this.http.post<any>(`${this.apiUrl}adminstrator/createUser`, user, httpOptions);
+  }
+
   getUserByIdentification(identification: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}adminstrator/getUser/${identification}`, httpOptions);
   }

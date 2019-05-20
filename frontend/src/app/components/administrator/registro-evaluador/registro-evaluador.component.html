@@ -1,6 +1,6 @@
-<h1 style="padding: 16px;">Registrar autor</h1>
+<h1 style="padding: 16px;">Registrar evaluador</h1>
 <div style="padding: 0 16px 16px 16px;">
-    <form [formGroup]="autorForm">
+    <form [formGroup]="evaluadorForm">
 
         <mat-form-field class="full-width">
             <input matInput type="number" placeholder="Identificación" formControlName="identificationUser">
@@ -33,18 +33,6 @@
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <mat-label>Semillero</mat-label>
-            <mat-select formControlName="hodbed">
-                <mat-option *ngFor="let hod of hodbeds" [value]="hod.name" >
-                    {{hod.name}}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="hodbed.hasError('required')">
-                El semillero es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
             <input matInput placeholder="Email" formControlName="emailUser">
             <mat-error *ngIf="emailUser.hasError('email') && !emailUser.hasError('required')">
                 Por favor ingrese un email válido
@@ -61,10 +49,22 @@
             </mat-error>
         </mat-form-field>
 
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Link Cvlack" formControlName="linkCvlackEvaluator">
+            <mat-error *ngIf="linkCvlackEvaluator.hasError('required')">
+                El link es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Nivel de educación" formControlName="levelEducationEvaluator">
+            <mat-error *ngIf="emailUser.hasError('required')">
+                El nivel de educación es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
     </form>
 
-    <button [disabled]="autorForm.invalid" mat-raised-button (click)="registerAutor()">Registrar</button>
-    <button style="margin-left: 10px;" (click)="autorForm.reset()" mat-raised-button>Cancelar</button>
-
+    <button [disabled]="evaluadorForm.invalid" mat-raised-button (click)="registerEvaluador()">Registrar</button>
+    <button style="margin-left: 10px;" (click)="comiteForm.reset()" mat-raised-button>Cancelar</button>
 </div>
-
