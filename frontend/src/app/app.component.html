@@ -4,7 +4,7 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
                  [opened]="!mobileQuery.matches && currentUser">
 
-        <img class="profile" src="https://via.placeholder.com/150">
+        <img class="profile" src="https://via.placeholder.com/150" alt="profile">
         <p *ngIf="currentUser" class="text-center">
             <strong style="display: block">{{currentUser.nameUser}}</strong>
             <small>{{currentUser.privilegesTypeUser}}</small>
