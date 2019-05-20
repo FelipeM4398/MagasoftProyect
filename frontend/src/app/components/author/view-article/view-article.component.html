@@ -1,0 +1,18 @@
+<h1 style="padding: 16px;">Mis articulos</h1>
+
+<div style="padding: 0 16px 16px 16px;" *ngIf="articles">
+    <mat-card class="card-article" *ngFor="let article of articles">
+        <mat-card-header>
+            <mat-card-title>{{ article.title }}</mat-card-title>
+            <mat-card-subtitle>{{ article.publicationDate | date }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p style="text-align: justify">
+            {{article.description}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button>Ver estado</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

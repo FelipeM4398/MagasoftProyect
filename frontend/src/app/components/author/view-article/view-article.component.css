@@ -1,0 +1,7 @@
+::ng-deep .mat-card-header-text {
+    margin: unset !important;
+}
+
+.card-article {
+    max-width: 600px;
+}

@@ -40,6 +40,7 @@ export class RegistroComiteComponent implements OnInit {
                   Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
                   console.log(data.message);
                 } else if (data.message === 'Created user') {
+                  this.comiteForm.reset();
                   Swal.fire('Exito', 'Usuario registrado', 'success');
                 }
               },

@@ -20,6 +20,7 @@ import { HomeAuthorComponent } from './components/author/home/home.component';
 
 import { SinPermisosComponent } from './components/sin-permisos/sin-permisos.component';
 import { RegistrarArticuloComponent } from './components/author/registrar-articulo/registrar-articulo.component';
+import { ViewArticleComponent } from './components/author/view-article/view-article.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RegistrarArticuloComponent } from './components/author/registrar-articu
     RegistroEvaluadorComponent,
     SinPermisosComponent,
     HomeAuthorComponent,
-    RegistrarArticuloComponent
+    RegistrarArticuloComponent,
+    ViewArticleComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatButtonModule,
