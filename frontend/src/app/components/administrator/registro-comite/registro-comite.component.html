@@ -3,48 +3,48 @@
     <form [formGroup]="comiteForm">
 
         <mat-form-field class="full-width">
-            <input matInput type="number" placeholder="Identificación" formControlName="identificationUser">
-            <mat-error *ngIf="identificationUser.hasError('required')">
+            <input matInput name="i_comite" type="number" placeholder="Identificación" formControlName="identificationUser">
+            <mat-error class="comite" *ngIf="identificationUser.hasError('required')">
                 La identificación es <strong>requerida</strong>
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Nombres" formControlName="nameUser">
-            <mat-error *ngIf="nameUser.hasError('required')">
+            <input name="n_comite" matInput placeholder="Nombres" formControlName="nameUser">
+            <mat-error class="comite" *ngIf="nameUser.hasError('required')">
                 El nombre es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Apellidos" formControlName="lastNameUser">
-            <mat-error *ngIf="lastNameUser.hasError('required')">
+            <input name="l_comite" matInput placeholder="Apellidos" formControlName="lastNameUser">
+            <mat-error class="comite" *ngIf="lastNameUser.hasError('required')">
                 El apellido es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput [matDatepicker]="picker" formControlName="birthDateUser" placeholder="Fecha de nacimiento">
+            <input name="b_comite" matInput [matDatepicker]="picker" formControlName="birthDateUser" placeholder="Fecha de nacimiento">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="birthDateUser.hasError('required')">
+            <mat-error class="comite" *ngIf="birthDateUser.hasError('required')">
                 La fecha es <strong>requerida</strong>
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Email" formControlName="emailUser">
-            <mat-error *ngIf="emailUser.hasError('email') && !emailUser.hasError('required')">
+            <input name="e_comite" matInput placeholder="Email" formControlName="emailUser">
+            <mat-error class="comite" *ngIf="emailUser.hasError('email') && !emailUser.hasError('required')">
                 Por favor ingrese un email válido
             </mat-error>
-            <mat-error *ngIf="emailUser.hasError('required')">
+            <mat-error class="comite" *ngIf="emailUser.hasError('required')">
                 El email es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput type="password" placeholder="Password" formControlName="passwordUser">
-            <mat-error *ngIf="passwordUser.hasError('required')">
+            <input name="p_comite" matInput type="password" placeholder="Password" formControlName="passwordUser">
+            <mat-error class="comite" *ngIf="passwordUser.hasError('required')">
                 Password es <strong>requerido</strong>
             </mat-error>
         </mat-form-field>

@@ -16,7 +16,7 @@ const httpOptions = {
 export class AuthService {
 
   apiUrl = 'http://localhost:3000/auth/';
-  public currentUser: Observable<User>;
+  public currentUser: Observable<any>;
   private currentUserSubject: BehaviorSubject<any>;
 
   constructor(private http: HttpClient) {
@@ -48,9 +48,9 @@ export class AuthService {
   }
 
   returnUrl(rol: string): string {
-    if (rol === 'ADMINISTRADOR') {
+    if (rol === 'ADMINISTRATOR') {
       return 'administrator/home';
-    } else if ( rol === 'AUTOR' ) {
+    } else if ( rol === 'AUTHOR' ) {
       return 'author/home';
     }
   }

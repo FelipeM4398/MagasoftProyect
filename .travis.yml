@@ -38,5 +38,6 @@ script:
   - cd ../frontend
   - npm install
   - ng lint
+  - ng test --code-coverage=true --watch=false --browsers ChromeHeadless --reporters
   - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=felipem4398-github -Dsonar.projectKey=FelipeM4398_MagasoftProyect -Dsonar.sources='./src' -X
   - ng build --prod

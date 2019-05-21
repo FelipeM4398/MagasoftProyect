@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    if (this.loginForm.invalid){
+    if (this.loginForm.invalid) {
       return;
     } else {
       this.authService.SignUp(this.email.value, this.password.value)
