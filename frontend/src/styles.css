@@ -1,6 +1,13 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import url(https://fonts.googleapis.com/icon?family=Roboto);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://use.fontawesome.com/releases/v5.8.2/css/all.css);
+@import url(https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Montserrat&display=swap);
+
+:root {
+    --color-primary: #7A547C;
+}
 
 * {
     margin: unset;
@@ -11,9 +18,14 @@
     text-align: center;
 }
 
+.font-title {
+    font-family: Cormorant, Garamond, Arial, Helvetica, sans-serif;
+    color: #3C325C;
+}
+
 html, body {
     height: 100vh !important;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .mat-card, .mat-raised-button, .mat-button {
@@ -22,4 +34,23 @@ html, body {
 
 .swal2-popup {
     width: 20em !important;
+}
+
+.mat-drawer-container {
+    background: unset;
+    color: unset;
+}
+
+.mat-raised-button.primary {
+    background: #7A547C;
+    color: #fff;
+}
+
+a {
+    color: #2292AB;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 36px;
+    width: max-content;
+    box-sizing: content-box;
 }

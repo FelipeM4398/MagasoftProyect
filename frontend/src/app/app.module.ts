@@ -16,7 +16,7 @@ import { RegistroAutorComponent } from './components/administrator/registro-auto
 import { RegistroComiteComponent } from './components/administrator/registro-comite/registro-comite.component';
 import { RegistroEvaluadorComponent } from './components/administrator/registro-evaluador/registro-evaluador.component';
 
-import { HomeAuthorComponent } from './components/author/home/home.component';
+import { HomeAuthorComponent } from './components/author/home/home-author.component';
 
 import { SinPermisosComponent } from './components/sin-permisos/sin-permisos.component';
 import { RegistrarArticuloComponent } from './components/author/registrar-articulo/registrar-articulo.component';

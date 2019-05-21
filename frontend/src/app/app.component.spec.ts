@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { throwError, of, observable } from 'rxjs';
-import { UserService } from './services/user.service';
+import { UserService } from './services/user/user.service';
 
 describe('AppComponent', () => {
 

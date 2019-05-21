@@ -1,18 +1,102 @@
-.container-login {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-.mat-card {
-    max-width: 15em;
-    height: min-content;
+@media (max-width: 767px) {
+    .container-login {
+        grid-template-columns: 1fr !important;
+    }
+
+    .left-container {
+        padding: .3rem !important;
+    }
+
+    .right-container {
+        display: none !important;
+    }
 }
 
-.full-width {
+.container-login {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    height: 100vh;
+}
+
+.left-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    padding: 0;
+}
+
+.header-container h1 {
+    width: 100%;
+    display: block;
+    margin-bottom: 1.9rem;
+    font-size: 3rem;
+}
+
+.header-container p {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.login-form {
+    width: 60%;
+    min-width: 254px;
+    max-width: 324px;
+    margin: 0 auto;
+}
+
+.login-form .full-width {
     width: 100%;
 }
 
-.mat-card-actions {
-    text-align: center;
+.login-form .buttons {
+    display: grid;
+    grid-template: 1fr / 1.5fr 1fr;
+}
+
+.login-form .buttons button {
+    width: max-content;
+    justify-self: flex-end;
+}
+
+.footer-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.footer-container small {
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.social-icons {
+    font-size: 1.5rem;
+    color: #3C325C;
+}
+
+.social-icons i {
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.social-icons i:last-child {
+    margin-right: unset;
+}
+
+.right-container {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0;
+    justify-content: center;
+}
+
+.right-container h2 {
+    max-width: 390px;
+    font-size: 3rem;
+    margin: 1rem auto;
+}
+
+.image-login {
+    max-width: 800px;
+    width: 100%;
 }

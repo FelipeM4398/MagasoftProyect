@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/administrator/home/home.component';
-import { HomeAuthorComponent } from './components/author/home/home.component';
+import { HomeAuthorComponent } from './components/author/home/home-author.component';
 import { AdministratorGuard } from './_guards/administrator.guard';
 import { RegistroAutorComponent } from './components/administrator/registro-autor/registro-autor.component';
 import { RegistroComiteComponent } from './components/administrator/registro-comite/registro-comite.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'author', canActivate: [AuthorGuard],
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: 'home', component: HomeAuthorComponent },
       { path: 'registrar/article', component: RegistrarArticuloComponent },
       { path: 'myarticles', component: ViewArticleComponent },
     ]

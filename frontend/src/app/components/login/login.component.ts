@@ -35,12 +35,16 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    this.authService.SignUp(this.email.value, this.password.value)
-    .pipe(first())
-    .subscribe(
-      (data: any) => this.router.navigate([this.returnUrl(data.privilegesTypeUser)]),
-      error => Swal.fire('Error', 'Credenciales incorrectas', 'error'),
-    );
+    if (this.loginForm.invalid){
+      return;
+    } else {
+      this.authService.SignUp(this.email.value, this.password.value)
+      .pipe(first())
+      .subscribe(
+        (data: any) => this.router.navigate([this.returnUrl(data.privilegesTypeUser)]),
+        error => Swal.fire('Error', 'Credenciales incorrectas', 'error'),
+      );
+    }
   }
 
   returnUrl(rol: string) {
