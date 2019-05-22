@@ -25,8 +25,4 @@ export class UserService {
     });
     return this.http.post<any>(`${this.apiUrl}adminstrator/createUser`, user, httpOptions);
   }
-
-  getUserByIdentification(identification: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}adminstrator/getUser/${identification}`, httpOptions);
-  }
 }

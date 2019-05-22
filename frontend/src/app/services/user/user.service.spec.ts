@@ -2,6 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { User } from 'src/app/_interfaces/user';
 
 describe('UserService', () => {
 
@@ -16,9 +17,16 @@ describe('UserService', () => {
     httpMock = injector.get(HttpTestingController);
   });
 
-  it('should be created', () => {
+  it('should create user', () => {
     const service: UserService = TestBed.get(UserService);
-    expect(service).toBeTruthy();
+    const user: User = null;
+    service.createUser(user, 'token').subscribe( data => {
+      expect(data).toEqual({message: 'Created user'});
+    });
+
+    const requ = httpMock.expectOne('http://localhost:3000/adminstrator/createUser');
+    expect(requ.request.method).toBe('POST');
+    requ.flush({message: 'Created user'});
   });
 
 });

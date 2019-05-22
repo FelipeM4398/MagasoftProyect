@@ -1,4 +1,4 @@
-import { TestBed, async, inject, getTestBed } from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from 'src/app/services/auth/auth.service';

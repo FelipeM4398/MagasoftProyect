@@ -39,7 +39,7 @@ import { ViewArticleComponent } from './components/author/view-article/view-arti
     BrowserModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatButtonModule,
     AppRoutingModule, BrowserAnimationsModule, MatDividerModule, MatMenuModule,
     HttpClientModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule,
-    MatExpansionModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+    MatExpansionModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule
   ],
   providers: [ MatDatepickerModule ],
   bootstrap: [AppComponent]

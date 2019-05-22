@@ -28,24 +28,27 @@ export class RegistroComiteComponent implements OnInit {
   }
 
   registerComite() {
-    this.comite = this.comiteForm.value;
-    this.comite.typeUser = 'MIEMBRO COMITE';
-    this.comite.levelEducationEvaluator = '';
-    this.comite.linkCvlackEvaluator = '';
-    this.comite.hodbed = '';
-    const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
-    this.userService.createUser(this.comite, token).subscribe(
-      data => {
-                if (data.message === 'Invalid Token') {
-                  Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
-                  console.log(data.message);
-                } else if (data.message === 'Created user') {
-                  this.comiteForm.reset();
-                  Swal.fire('Exito', 'Usuario registrado', 'success');
-                }
-              },
-      error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
-    );
+    if (this.comiteForm.invalid) {
+      return;
+    } else {
+      this.comite = this.comiteForm.value;
+      this.comite.typeUser = 'MIEMBRO COMITE';
+      this.comite.levelEducationEvaluator = '';
+      this.comite.linkCvlackEvaluator = '';
+      this.comite.hodbed = '';
+      const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
+      this.userService.createUser(this.comite, token).subscribe(
+        data => {
+                  if (data.message === 'Invalid Token') {
+                    Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
+                  } else if (data.message === 'Created user') {
+                    this.comiteForm.reset();
+                    Swal.fire('Exito', 'Usuario registrado', 'success');
+                  }
+                },
+        error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
+      );
+    }
   }
 
   get nameUser() {

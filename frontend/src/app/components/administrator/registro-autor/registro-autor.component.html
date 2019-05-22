@@ -1,70 +1,74 @@
 <h1 style="padding: 16px;">Registrar autor</h1>
 <div style="padding: 0 16px 16px 16px;">
-    <form [formGroup]="autorForm">
 
-        <mat-form-field class="full-width">
-            <input matInput type="number" name="i_autor" placeholder="Identificación" formControlName="identificationUser">
-            <mat-error class="autor" *ngIf="identificationUser.hasError('required')">
-                La identificación es <strong>requerida</strong>
-            </mat-error>
-        </mat-form-field>
+    <mat-card class="card-form">
 
-        <mat-form-field class="full-width">
-            <input matInput name="n_autor" placeholder="Nombres" formControlName="nameUser">
-            <mat-error class="autor" *ngIf="nameUser.hasError('required')">
-                El nombre es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+        <form [formGroup]="autorForm" (ngSubmit)="registerAutor()">
 
-        <mat-form-field class="full-width">
-            <input matInput name="l_autor" placeholder="Apellidos" formControlName="lastNameUser">
-            <mat-error class="autor" *ngIf="lastNameUser.hasError('required')">
-                El apellido es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" name="i_autor" placeholder="Identificación" formControlName="identificationUser">
+                <mat-error class="autor" *ngIf="identificationUser.hasError('required')">
+                    La identificación es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <input matInput name="b_autor" [matDatepicker]="picker" formControlName="birthDateUser" placeholder="Fecha de nacimiento">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error class="autor" *ngIf="birthDateUser.hasError('required')">
-                La fecha es <strong>requerida</strong>
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput name="n_autor" placeholder="Nombres" formControlName="nameUser">
+                <mat-error class="autor" *ngIf="nameUser.hasError('required')">
+                    El nombre es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <mat-label>Semillero</mat-label>
-            <mat-select name="h_autor" formControlName="hodbed">
-                <mat-option *ngFor="let hod of hodbeds" [value]="hod.name" >
-                    {{hod.name}}
-                </mat-option>
-            </mat-select>
-            <mat-error class="autor" *ngIf="hodbed.hasError('required')">
-                El semillero es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput name="l_autor" placeholder="Apellidos" formControlName="lastNameUser">
+                <mat-error class="autor" *ngIf="lastNameUser.hasError('required')">
+                    El apellido es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <input name="e_autor" matInput placeholder="Email" formControlName="emailUser">
-            <mat-error class="autor" *ngIf="emailUser.hasError('email') && !emailUser.hasError('required')">
-                Por favor ingrese un email válido
-            </mat-error>
-            <mat-error *ngIf="emailUser.hasError('required')">
-                El email es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput name="b_autor" [matDatepicker]="picker" formControlName="birthDateUser" placeholder="Fecha de nacimiento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error class="autor" *ngIf="birthDateUser.hasError('required')">
+                    La fecha es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <input matInput name="p_autor" type="password" placeholder="Password" formControlName="passwordUser">
-            <mat-error class="autor" *ngIf="passwordUser.hasError('required')">
-                Password es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Semillero</mat-label>
+                <mat-select name="h_autor" formControlName="hodbed">
+                    <mat-option *ngFor="let hod of hodbeds" [value]="hod.name" >
+                        {{hod.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error class="autor" *ngIf="hodbed.hasError('required')">
+                    El semillero es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
 
-    </form>
+            <mat-form-field class="full-width">
+                <input name="e_autor" matInput placeholder="Email" formControlName="emailUser">
+                <mat-error class="autor" *ngIf="emailUser.hasError('email') && !emailUser.hasError('required')">
+                    Por favor ingrese un email válido
+                </mat-error>
+                <mat-error *ngIf="emailUser.hasError('required')">
+                    El email es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
 
-    <button [disabled]="autorForm.invalid" mat-raised-button (click)="registerAutor()">Registrar</button>
-    <button style="margin-left: 10px;" (click)="autorForm.reset()" mat-raised-button>Cancelar</button>
+            <mat-form-field class="full-width">
+                <input matInput name="p_autor" type="password" placeholder="Password" formControlName="passwordUser">
+                <mat-error class="autor" *ngIf="passwordUser.hasError('required')">
+                    Password es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <button type="submit" class="primary" mat-raised-button>Registrar</button>
+            <button type="reset" style="margin-left: 10px;" class="danger" mat-raised-button>Cancelar</button>
+        </form>
+
+    </mat-card>
 
 </div>
 

@@ -2,8 +2,25 @@
     height: 100%;
 }
 
+.mat-sidenav {
+    min-width: 192px;
+}
+
+.user-name {
+    margin-bottom: 1.5rem;
+}
+
+.mat-nav-list > a:hover {
+    background: rgba(122, 84, 124, .3);
+}
+
+.mat-icon {
+    color: #3C325C; 
+}
+
 .mat-toolbar {
     justify-content: space-between;
+    background: #3C325C;
 }
 
 .profile {
@@ -13,6 +30,10 @@
     width: 100px;
 }
 
-.mat-sidenav {
-    min-width: 170px;
+.mat-toolbar h2 {
+    color: #fff;
+    font-family: Cormorant, Garamond, Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
 }
+

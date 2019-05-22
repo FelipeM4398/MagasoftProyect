@@ -24,24 +24,29 @@ export class RegistrarArticuloComponent implements OnInit {
   }
 
   registerArticle() {
-    this.article = this.articleForm.value;
-    this.article.publicationDate = new Date();
-    this.article.userIdUser = JSON.parse(localStorage.getItem('currentUser')).idUser;
-    this.article.typeUser = JSON.parse(localStorage.getItem('currentUser')).privilegesTypeUser;
-    const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
+    if (this.articleForm.invalid) {
+      return;
+    } else {
+      this.article = this.articleForm.value;
+      this.article.publicationDate = new Date();
+      this.article.userIdUser = JSON.parse(localStorage.getItem('currentUser')).idUser;
+      this.article.typeUser = JSON.parse(localStorage.getItem('currentUser')).privilegesTypeUser;
+      const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
 
-    this.articleService.createArticle(this.article, token).subscribe(
-      data => {
-                if (data.message === 'Invalid Token') {
-                  Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
-                  console.log(data.message);
-                } else if (data.message === 'Article created') {
-                  this.articleForm.reset();
-                  Swal.fire('Exito', 'Articulo registrado', 'success');
-                }
-              },
-      error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
-    );
+      this.articleService.createArticle(this.article, token).subscribe(
+        data => {
+                  if (data.message === 'Invalid Token') {
+                    Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
+                  } else if (data.message === 'Article created') {
+                    this.articleForm.reset();
+                    Swal.fire('Exito', 'Articulo registrado', 'success');
+                  } else {
+                    Swal.fire('Mensaje', data.message, 'info');
+                  }
+                },
+        error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
+      );
+    }
   }
 
   get title() {

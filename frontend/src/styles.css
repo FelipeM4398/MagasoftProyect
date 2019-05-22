@@ -18,9 +18,13 @@
     text-align: center;
 }
 
-.font-title {
+.font-title, h1 {
     font-family: Cormorant, Garamond, Arial, Helvetica, sans-serif;
     color: #3C325C;
+}
+
+h1 {
+    font-size: 3rem;
 }
 
 html, body {
@@ -30,6 +34,11 @@ html, body {
 
 .mat-card, .mat-raised-button, .mat-button {
     border-radius: unset !important;
+}
+
+.card-form {
+    max-width: 500px;
+    width: 90%;
 }
 
 .swal2-popup {
@@ -43,6 +52,11 @@ html, body {
 
 .mat-raised-button.primary {
     background: #7A547C;
+    color: #fff;
+}
+
+.mat-raised-button.danger {
+    background: #EE434B;
     color: #fff;
 }
 

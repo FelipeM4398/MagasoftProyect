@@ -37,24 +37,28 @@ export class RegistroAutorComponent implements OnInit {
   }
 
   registerAutor() {
-    this.autor = this.autorForm.value;
-    this.autor.typeUser = 'AUTOR';
-    this.autor.levelEducationEvaluator = '';
-    this.autor.linkCvlackEvaluator = '';
-    const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
-    console.log(this.autor, token);
-    this.userService.createUser(this.autor, token).subscribe(
-      data => {
-                if (data.message === 'Invalid Token') {
-                  Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
-                  console.log(data.message);
-                } else if (data.message === 'Created user') {
-                  this.autorForm.reset();
-                  Swal.fire('Exito', 'Usuario registrado', 'success');
-                }
-              },
-      error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
-    );
+    if (this.autorForm.invalid) {
+      return;
+    } else {
+      this.autor = this.autorForm.value;
+      this.autor.typeUser = 'AUTOR';
+      this.autor.levelEducationEvaluator = '';
+      this.autor.linkCvlackEvaluator = '';
+      const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
+      console.log(this.autor, token);
+      this.userService.createUser(this.autor, token).subscribe(
+        data => {
+                  if (data.message === 'Invalid Token') {
+                    Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
+                    console.log(data.message);
+                  } else if (data.message === 'Created user') {
+                    this.autorForm.reset();
+                    Swal.fire('Exito', 'Usuario registrado', 'success');
+                  }
+                },
+        error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
+      );
+    }
   }
 
   get nameUser() {

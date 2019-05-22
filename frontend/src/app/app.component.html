@@ -4,13 +4,15 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
                  [opened]="!mobileQuery.matches && currentUser">
 
-        <img class="profile" src="https://via.placeholder.com/150" alt="profile">
-        <p *ngIf="currentUser" class="text-center">
+        <img class="profile" src="https://via.placeholder.com/150/7A547C/7A547C" alt="profile">
+
+        <p *ngIf="currentUser" class="text-center user-name">
             <strong style="display: block">{{currentUser.nameUser}}</strong>
             <small>{{currentUser.privilegesTypeUser}}</small>
         </p>
 
         <mat-nav-list *ngIf="currentUser">
+
             <a mat-list-item routerLink="returnUrl(currentUser.privilegesTypeUser)">
                 <mat-icon mat-list-icon>home</mat-icon>
                 Home
@@ -21,9 +23,19 @@
                 Usuarios
             </a>
             <mat-menu #menu="matMenu" xPosition="after">
-                <button mat-menu-item routerLink="administrator/registrar/autor">Registrar autor</button>
-                <button mat-menu-item routerLink="administrator/registrar/comite">Registrar miembro del comite</button>
-                <button mat-menu-item mat-menu-item routerLink="administrator/registrar/evaluador">Registrar evaluador</button>
+                <button [matMenuTriggerFor]="menuUser" mat-menu-item>
+                    <mat-icon mat-list-icon>group_add</mat-icon>
+                    Registrar usuarios
+                </button>
+                <button mat-menu-item routerLink=".">
+                    <mat-icon mat-list-icon>search</mat-icon>
+                    Buscar usuarios
+                </button>
+            </mat-menu>
+            <mat-menu #menuUser="matMenu" xPosition="after">
+                <button mat-menu-item routerLink="administrator/registrar/autor"><mat-icon mat-list-icon>person_add</mat-icon>Registrar autor</button>
+                <button mat-menu-item routerLink="administrator/registrar/comite"><mat-icon mat-list-icon>person_add</mat-icon>Registrar comité</button>
+                <button mat-menu-item mat-menu-item routerLink="administrator/registrar/evaluador"><mat-icon mat-list-icon>person_add</mat-icon>Registrar evaluador</button>
             </mat-menu>
 
             <a mat-list-item routerLink="author/registrar/article" *ngIf="currentUser.privilegesTypeUser === 'AUTHOR'">
@@ -48,7 +60,7 @@
         <mat-toolbar class="mat-elevation-z1" *ngIf="currentUser">
             <h2>Magasoft.</h2>
             <button mat-icon-button (click)="snav.toggle()" *ngIf="mobileQuery.matches">
-                <mat-icon>menu</mat-icon>
+                <mat-icon style="color: #fff">menu</mat-icon>
             </button>
         </mat-toolbar>
 

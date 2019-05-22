@@ -30,6 +30,6 @@ export class AppComponent {
   }
 
   returnUrl(rol: string) {
-    console.log(this.authService.returnUrl(rol));
+    this.authService.returnUrl(rol);
   }
 }
