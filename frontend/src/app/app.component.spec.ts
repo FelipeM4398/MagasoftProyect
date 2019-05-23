@@ -4,6 +4,12 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatCardModule, MatInputModule, MatButtonModule, MatDividerModule, MatToolbarModule,
+  MatSidenavModule, MatMenuModule, MatIconModule, MatListModule, MatExpansionModule,
+  MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+} from '@angular/material';
 import { UserService } from './services/user/user.service';
 
 describe('AppComponent', () => {
@@ -15,7 +21,10 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, ReactiveFormsModule, HttpClientModule
+        RouterTestingModule, ReactiveFormsModule, HttpClientModule, MatCardModule, MatInputModule,
+        MatButtonModule, MatDividerModule, MatToolbarModule, BrowserAnimationsModule,
+        MatSidenavModule, MatMenuModule, MatIconModule, MatListModule, MatExpansionModule,
+        MatDatepickerModule, MatNativeDateModule, MatSelectModule,
       ],
       declarations: [
         AppComponent
@@ -30,6 +39,11 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create app', () => {
+    component.logOut();
+    component.returnUrl('');
   });
 
 });

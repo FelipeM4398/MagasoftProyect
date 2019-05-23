@@ -44,6 +44,8 @@ export class RegistroComiteComponent implements OnInit {
                   } else if (data.message === 'Created user') {
                     this.comiteForm.reset();
                     Swal.fire('Exito', 'Usuario registrado', 'success');
+                  } else {
+                      Swal.fire('Mensaje', data.message, 'info');
                   }
                 },
         error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),

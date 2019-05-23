@@ -41,10 +41,11 @@ export class RegistroEvaluadorComponent implements OnInit {
         data => {
                   if (data.message === 'Invalid Token') {
                     Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
-                    console.log(data.message);
                   } else if (data.message === 'Created user') {
                     this.evaluadorForm.reset();
                     Swal.fire('Exito', 'Usuario registrado', 'success');
+                  } else {
+                    Swal.fire('Mensaje', data.message, 'info');
                   }
                 },
         error => Swal.fire(`Error ${error.status}`, 'Algo ha ocurrido mal, intentalo más tarde', 'error'),
@@ -81,7 +82,7 @@ export class RegistroEvaluadorComponent implements OnInit {
   }
 
   get levelEducationEvaluator() {
-    return this.evaluadorForm.get('linkCvlackEvaluator');
+    return this.evaluadorForm.get('levelEducationEvaluator');
   }
 
 }

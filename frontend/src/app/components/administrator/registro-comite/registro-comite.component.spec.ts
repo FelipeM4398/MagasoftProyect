@@ -37,7 +37,7 @@ describe('RegistroComiteComponent', () => {
       {
         nameUser: 'name',
         lastNameUser: 'last',
-        birthDateUser: '14/10/1998',
+        birthDateUser: new Date(),
         identificationUser: '1111',
         emailUser: 'luis@gmail.com',
         passwordUser: '123'
@@ -50,8 +50,23 @@ describe('RegistroComiteComponent', () => {
     component.registerComite();
   });
 
+  it('should show created comite', () => {
+    spyOn(component.userService, 'createUser').and.returnValue(of({message: 'Created user'}));
+    component.registerComite();
+  });
+
   it('should methond return null', () => {
     component.comiteForm.reset();
+    component.registerComite();
+  });
+
+  it('should show error message', () => {
+    spyOn(component.userService, 'createUser').and.returnValue(throwError('error'));
+    component.registerComite();
+  });
+
+  it('should show info message', () => {
+    spyOn(component.userService, 'createUser').and.returnValue(of({message: 'Info message'}));
     component.registerComite();
   });
 

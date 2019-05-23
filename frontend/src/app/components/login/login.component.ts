@@ -16,11 +16,14 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   });
+  articleForm: any;
 
   constructor(public authService: AuthService,  private router: Router) {
     if (this.authService.currentUserValue) {
       this.router.navigate([this.returnUrl(this.authService.currentUserValue.privilegesTypeUser)]);
-  }
+    } else {
+      return;
+    }
   }
 
   ngOnInit() {

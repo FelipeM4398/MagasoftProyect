@@ -61,7 +61,7 @@
 
             <mat-form-field class="full-width">
                 <input matInput placeholder="Nivel de educación" formControlName="levelEducationEvaluator">
-                <mat-error *ngIf="emailUser.hasError('required')">
+                <mat-error *ngIf="levelEducationEvaluator.hasError('required')">
                     El nivel de educación es <strong>requerido</strong>
                 </mat-error>
             </mat-form-field>
