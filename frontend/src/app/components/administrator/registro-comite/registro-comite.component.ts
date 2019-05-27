@@ -32,7 +32,7 @@ export class RegistroComiteComponent implements OnInit {
       return;
     } else {
       this.comite = this.comiteForm.value;
-      this.comite.typeUser = 'MIEMBRO COMITE';
+      this.comite.typeUser = 'COMMITTEE';
       this.comite.levelEducationEvaluator = '';
       this.comite.linkCvlackEvaluator = '';
       this.comite.hodbed = '';

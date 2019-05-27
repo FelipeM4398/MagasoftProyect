@@ -34,7 +34,7 @@ export class RegistroEvaluadorComponent implements OnInit {
       return;
     } else {
       this.evaluador = this.evaluadorForm.value;
-      this.evaluador.typeUser = 'EVALUADOR';
+      this.evaluador.typeUser = 'EVALUATOR';
       this.evaluador.hodbed = '';
       const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
       this.userService.createUser(this.evaluador, token).subscribe(

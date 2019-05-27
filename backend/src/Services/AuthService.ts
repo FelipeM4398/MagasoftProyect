@@ -1,6 +1,6 @@
 import { getConnection } from 'typeorm';
 import User from '../entity/UserEntity';
-import { pbkdf2Sync } from 'crypto';
+import { pbkdf2Sync, createHash } from 'crypto';
 
 export default class AuthorService {
 

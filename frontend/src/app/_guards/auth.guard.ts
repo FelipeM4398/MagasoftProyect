@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
     if (currentUser) {
       const rol = currentUser.privilegesTypeUser;
       const url = route.routeConfig.path;
+      console.log(url);
 
       return this.checkPermisions(rol, url);
     }
@@ -27,6 +28,8 @@ export class AuthGuard implements CanActivate {
 
   checkPermisions(rol: string, route: string) {
     if ( rol === route.toUpperCase() ) {
+      return true;
+    } else if (route === 'info') {
       return true;
     } else {
       this.router.navigate(['/unathorized']);

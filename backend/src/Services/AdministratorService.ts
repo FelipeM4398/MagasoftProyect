@@ -3,12 +3,11 @@ import UserInterfaceService from './UserInterfaceService';
 import TypeUser from '../entity/TypeUserEntity';
 import User from '../entity/UserEntity';
 import Hotbed from '../entity/HotbedEntity';
-import {pbkdf2Sync} from 'crypto';
+import { pbkdf2Sync } from 'crypto';
 import EmailService from './EmailService';
+import Category from '../entity/CategoryEntity';
 
 export default class AdministratorService implements UserInterfaceService {
-
-
 	/**
 	 *
 	 *
@@ -17,7 +16,7 @@ export default class AdministratorService implements UserInterfaceService {
 	 * @memberof AdministratorService
 	 */
 	getUsers(objectUser): Object {
-		return getConnection().getRepository(objectUser).find({relations: ['typeUser']});
+		return getConnection().getRepository(objectUser).find({ relations: [ 'typeUser' ] });
 	}
 
 	/**
@@ -28,11 +27,12 @@ export default class AdministratorService implements UserInterfaceService {
      * @memberof AuthorService
      */
 	consultTypeUser(privilegesTypeUser: String) {
-		return getConnection().getRepository(TypeUser).createQueryBuilder('typeUser')
-			 .where('typeUser.privilegesTypeUser = :privilegesTypeUser', { privilegesTypeUser })
-			 .getOne();
+		return getConnection()
+			.getRepository(TypeUser)
+			.createQueryBuilder('typeUser')
+			.where('typeUser.privilegesTypeUser = :privilegesTypeUser', { privilegesTypeUser })
+			.getOne();
 	}
-
 
 	/**
 	 *  Get Hotdebs
@@ -42,14 +42,13 @@ export default class AdministratorService implements UserInterfaceService {
 	 * @memberof AdministratorService
 	 */
 	consultHotService(nameHotbed: string) {
-        return getConnection()
-        .getRepository(Hotbed)
-        .createQueryBuilder('hotbed')
-        .where('hotbed.nameHotbed = :nameHotbed', {nameHotbed})
-        .getOne()
+		return getConnection()
+			.getRepository(Hotbed)
+			.createQueryBuilder('hotbed')
+			.where('hotbed.nameHotbed = :nameHotbed', { nameHotbed })
+			.getOne();
 	}
 
-	
 	/**
 	 * Method for Get user
 	 *
@@ -59,10 +58,10 @@ export default class AdministratorService implements UserInterfaceService {
 	 */
 	consultgetUser(identificationUser: string) {
 		return getConnection()
-        .getRepository(User)
-        .createQueryBuilder('user')
-        .where('user.identificationUser = :identificationUser', {identificationUser})
-        .getOne()
+			.getRepository(User)
+			.createQueryBuilder('user')
+			.where('user.identificationUser = :identificationUser', { identificationUser })
+			.getOne();
 	}
 
 	/**
@@ -70,35 +69,117 @@ export default class AdministratorService implements UserInterfaceService {
      * Method Create user
      * @memberof AuthorService
      */
-	createUser(nameUser: string, lastNameUser: string,  birthDateUser, identificationUser, emailUser: string,passwordUser: string, hodbed?, typeUser?, levelEducationEvaluator ? : string,  linkCvlackEvaluator ? : string): void {
-		const mail = new EmailService(emailUser, 'Welcome to Magasoft', `Welcome ${nameUser} ${lastNameUser} to Magasoft, your role is ${typeUser.privilegesTypeUser.toLocaleUpperCase()}` );
-		if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'AUTOR') {
-			getConnection().createQueryBuilder().insert().into(User) .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), hodbed, typeUser }).execute();
+	createUser(
+		nameUser: string,
+		lastNameUser: string,
+		birthDateUser,
+		identificationUser,
+		emailUser: string,
+		passwordUser: string,
+		hodbed?,
+		typeUser?,
+		levelEducationEvaluator?: string,
+		linkCvlackEvaluator?: string
+	): void {
+		const mail = new EmailService(
+			emailUser,
+			'Welcome to Magasoft',
+			`Welcome ${nameUser} ${lastNameUser} to Magasoft, your role is ${typeUser.privilegesTypeUser.toLocaleUpperCase()}`
+		);
+		if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'AUTHOR') {
+			getConnection()
+				.createQueryBuilder()
+				.insert()
+				.into(User)
+				.values({
+					nameUser,
+					lastNameUser,
+					birthDateUser,
+					identificationUser,
+					emailUser,
+					passwordUser: this.createHash(passwordUser),
+					hodbed,
+					typeUser
+				})
+				.execute();
 			mail.sendEmail();
-		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'EVALUADOR') {
-			getConnection().createQueryBuilder().insert().into(User)
-			 .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), levelEducationEvaluator,  linkCvlackEvaluator, typeUser }).execute();
-			 mail.sendEmail();	
-			} else if(typeUser.privilegesTypeUser.toLocaleUpperCase() === 'MIEMBRO DEL COMITE') {
-			getConnection().createQueryBuilder().insert().into(User) .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), typeUser }).execute();
-			mail.sendEmail();	
-		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'LECTOR') {
-			getConnection().createQueryBuilder().insert().into(User) .values({ nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser: this.createHash(passwordUser), typeUser }).execute();			
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'EVALUATOR') {
+			getConnection()
+				.createQueryBuilder()
+				.insert()
+				.into(User)
+				.values({
+					nameUser,
+					lastNameUser,
+					birthDateUser,
+					identificationUser,
+					emailUser,
+					passwordUser: this.createHash(passwordUser),
+					levelEducationEvaluator,
+					linkCvlackEvaluator,
+					typeUser
+				})
+				.execute();
+			mail.sendEmail();
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'COMMITTEE') {
+			getConnection()
+				.createQueryBuilder()
+				.insert()
+				.into(User)
+				.values({
+					nameUser,
+					lastNameUser,
+					birthDateUser,
+					identificationUser,
+					emailUser,
+					passwordUser: this.createHash(passwordUser),
+					typeUser
+				})
+				.execute();
+			mail.sendEmail();
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'READER') {
+			getConnection()
+				.createQueryBuilder()
+				.insert()
+				.into(User)
+				.values({
+					nameUser,
+					lastNameUser,
+					birthDateUser,
+					identificationUser,
+					emailUser,
+					passwordUser: this.createHash(passwordUser),
+					typeUser
+				})
+				.execute();
 			mail.sendEmail();
 		}
 	}
 
+	/***
+	 * Method for create category
+	 */
+	createCategory(nameCategory) {
+		return getConnection().createQueryBuilder().insert().into(Category).values({ nameCategory }).execute();
+	}
+
+	/**
+	 *
+	 * Method for view view Categories
+	 * @returns
+	 * @memberof AdministratorService
+	 */
+	viewCategories() {
+		return getConnection().query(`SELECT * FROM category`);
+	}
+
+	
 	/**
 	 *
 	 * Method for create hash
 	 * @memberof AdministratorService
 	 */
-	createHash (password: string) : string {
+	createHash(password: string): string {
 		return pbkdf2Sync(password, 'salt', 100000, 35, 'sha512').toString('hex');
 	}
-
-	
-
-
-
 }

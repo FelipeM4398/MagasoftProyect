@@ -1,6 +1,7 @@
 import Article from '../entity/ArticleEntity';
 import User from '../entity/UserEntity';
 import { getConnection } from 'typeorm';
+import Category from '../entity/CategoryEntity';
 
 export default class ArticleService {
 	constructor() {}
@@ -16,14 +17,16 @@ export default class ArticleService {
 	 * @returns
 	 * @memberof ArticleService
 	 */
-	createArticle(title, description, publicationDate, user, typeUser: string) {
-		if (typeUser.toLocaleUpperCase() === 'AUTOR') {
-			return getConnection()
-				.createQueryBuilder()
-				.insert()
-				.into(Article)
-				.values({ title, description, publicationDate, user })
-				.execute();
+	async createArticle(title, description, publicationDate, user, typeUser: string, categoryFind: Category, urlFile) {
+		if (typeUser.toLocaleUpperCase() === 'AUTHOR') {	
+			const article = new Article();
+			article.title = title;
+			article.description = description;
+			article.publicationDate = publicationDate;
+			article.user = user;
+			article.urlFile = urlFile;
+			article.category = [categoryFind];
+			await getConnection().manager.save(article);
 		}
 	}
 
@@ -35,6 +38,17 @@ export default class ArticleService {
 	 * @memberof ArticleService
 	 */
 	viewArticles(email) {
-			return getConnection().query(`SELECT * FROM user u, article ar WHERE u.emailUser=? and u.idUser=ar.userIdUser`, [email])
+      return getConnection().query(`SELECT * FROM user u, article ar WHERE u.emailUser=? and u.idUser=ar.userIdUser`, [email])
 	}
+
+	/**
+	 *
+	 * Method for view view Categories
+	 * @returns
+	 * @memberof AdministratorService
+	 */
+	viewCategory(nameCategory) {
+		return getConnection().getRepository(Category).createQueryBuilder("category").where("category.nameCategory = :nameCategory", {nameCategory}).getOne();
+	}
+
 }

@@ -63,11 +63,10 @@
                     Password es <strong>requerido</strong>
                 </mat-error>
             </mat-form-field>
-
-            <button type="submit" class="primary" mat-raised-button>Registrar</button>
-            <button type="reset" style="margin-left: 10px;" class="danger" mat-raised-button>Cancelar</button>
         </form>
 
+        <button (click)="registerAutor()" [disabled]="autorForm.invalid" class="primary" mat-raised-button>Registrar</button>
+        <button (click)="autorForm.reset()" style="margin-left: 10px;" class="danger" mat-raised-button>Cancelar</button>
     </mat-card>
 
 </div>

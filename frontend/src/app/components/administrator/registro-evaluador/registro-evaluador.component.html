@@ -3,7 +3,7 @@
 
     <mat-card class="card-form">
 
-        <form [formGroup]="evaluadorForm" (ngSubmit)="registerEvaluador()">
+        <form [formGroup]="evaluadorForm">
 
             <mat-form-field class="full-width">
                 <input matInput type="number" placeholder="Identificación" formControlName="identificationUser">
@@ -66,10 +66,10 @@
                 </mat-error>
             </mat-form-field>
 
-            <button type="submit" class="primary" mat-raised-button>Registrar</button>
-            <button type="reset" class="danger" style="margin-left: 10px;" mat-raised-button>Cancelar</button>
-
         </form>
+
+        <button (click)="registerEvaluador()" [disabled]="evaluadorForm.invalid" class="primary" mat-raised-button>Registrar</button>
+        <button (click)="evaluadorForm.reset()" class="danger" style="margin-left: 10px;" mat-raised-button>Cancelar</button>
 
     </mat-card>
 

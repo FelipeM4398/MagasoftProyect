@@ -1,0 +1,24 @@
+<h1 style="padding: 16px; font-size: 3rem;" class="font-title">Usuarios</h1>
+
+<div class="container" style="padding: 0 16px">
+
+    <mat-accordion class="accordion-users">
+      <mat-expansion-panel *ngFor="let user of users">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{user.nameUser}} {{user.lastNameUser}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{user.typeUser.privilegesTypeUser}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div><strong>Identificación: </strong>{{user.identificationUser}}</div>
+        <div><strong>Fecha de nacimiento: </strong>{{user.birthDateUser}}</div>
+        <div><strong>Email: </strong>{{user.emailUser}}</div>
+        <div *ngIf="user.typeUser.privilegesTypeUser === 'EVALUATOR'"><strong>Link Cvlack: </strong>{{user.linkCvlackEvaluator}}</div>
+        <div *ngIf="user.typeUser.privilegesTypeUser === 'EVALUATOR'"><strong>Nivel de educación: </strong>{{user.levelEducationEvaluator}}</div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+</div>

@@ -1,0 +1,38 @@
+<h1 style="padding: 16px;">Actualizar mi información</h1>
+<div style="padding: 0 16px 16px 16px;">
+    <mat-card class="card-form">
+
+        <form [formGroup]="userForm" (ngSubmit)="registerComite()">
+
+            <mat-form-field class="full-width">
+                <input matInput name="i_current" type="number" placeholder="Identificación" formControlName="identificationUser">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input name="n_current" matInput placeholder="Nombres" formControlName="nameUser">
+                <mat-error class="current" *ngIf="nameUser.hasError('required')">
+                    El nombre es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input name="l_current" matInput placeholder="Apellidos" formControlName="lastNameUser">
+                <mat-error class="current" *ngIf="lastNameUser.hasError('required')">
+                    El apellido es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input name="b_current" matInput [matDatepicker]="picker" formControlName="birthDateUser" placeholder="Fecha de nacimiento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error class="comite" *ngIf="birthDateUser.hasError('required')">
+                    La fecha es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
+        </form>
+
+        <button (click)="updateUser()" [disabled]="!dataChange" class="primary" mat-raised-button>Actualizar</button>
+
+    </mat-card>
+</div>

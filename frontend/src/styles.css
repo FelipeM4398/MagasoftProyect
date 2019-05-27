@@ -9,6 +9,10 @@
     --color-primary: #7A547C;
 }
 
+.blockk-font {
+    font-family: 'BLOKK', Arial, Helvetica, sans-serif;
+}
+
 * {
     margin: unset;
     padding: unset;
@@ -50,6 +54,12 @@ html, body {
     color: unset;
 }
 
+.mat-raised-button.primary[disabled] {
+    background: #7A547C;
+    color: #fff;
+    opacity: .7;
+}
+
 .mat-raised-button.primary {
     background: #7A547C;
     color: #fff;
@@ -58,6 +68,11 @@ html, body {
 .mat-raised-button.danger {
     background: #EE434B;
     color: #fff;
+}
+
+.full-width {
+    display: block;
+    width: 100%;
 }
 
 a {

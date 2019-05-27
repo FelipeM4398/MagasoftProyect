@@ -12,6 +12,9 @@ import { RegistrarArticuloComponent } from './components/author/registrar-articu
 import { ViewArticleComponent } from './components/author/view-article/view-article.component';
 
 import { AuthGuard } from './_guards/auth.guard';
+import { RegistroCategoriaComponent } from './components/administrator/registro-categoria/registro-categoria.component';
+import { MiInformacionComponent } from './components/mi-informacion/mi-informacion.component';
+import { BuscarUsuariosComponent } from './components/administrator/buscar-usuarios/buscar-usuarios.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +25,8 @@ const routes: Routes = [
       { path: 'registrar/autor', component: RegistroAutorComponent },
       { path: 'registrar/comite', component: RegistroComiteComponent },
       { path: 'registrar/evaluador', component: RegistroEvaluadorComponent },
+      { path: 'registrar/categoria', component: RegistroCategoriaComponent },
+      { path: 'usuarios', component: BuscarUsuariosComponent },
     ]
   },
   {
@@ -32,6 +37,7 @@ const routes: Routes = [
       { path: 'myarticles', component: ViewArticleComponent },
     ]
   },
+  { path: 'info', component: MiInformacionComponent, canActivate: [AuthGuard] },
   { path: 'unathorized', component: SinPermisosComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];

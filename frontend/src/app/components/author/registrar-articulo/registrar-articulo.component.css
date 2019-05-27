@@ -1,3 +1,18 @@
 .full-width {
     display: block;
 }
+
+form {
+    margin-bottom: 20px;
+}
+
+.mat-card {
+    max-width: 500px;
+    width: calc(100% - 30px);
+}
+
+.file label {
+    display: block;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}

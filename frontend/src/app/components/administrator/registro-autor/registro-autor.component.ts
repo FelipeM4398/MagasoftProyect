@@ -41,7 +41,7 @@ export class RegistroAutorComponent implements OnInit {
       return;
     } else {
       this.autor = this.autorForm.value;
-      this.autor.typeUser = 'AUTOR';
+      this.autor.typeUser = 'AUTHOR';
       this.autor.levelEducationEvaluator = '';
       this.autor.linkCvlackEvaluator = '';
       const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
@@ -50,7 +50,6 @@ export class RegistroAutorComponent implements OnInit {
                   if (data.message === 'Invalid Token') {
                     Swal.fire('Error', 'No tienes permiso para realizar está accion', 'error');
                   } else if (data.message === 'Created user') {
-                      this.autorForm.reset();
                       Swal.fire('Exito', 'Usuario registrado', 'success');
                     } else {
                       Swal.fire('Mensaje', data.message, 'info');

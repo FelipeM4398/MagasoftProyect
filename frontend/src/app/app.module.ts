@@ -21,6 +21,9 @@ import { HomeAuthorComponent } from './components/author/home/home-author.compon
 import { SinPermisosComponent } from './components/sin-permisos/sin-permisos.component';
 import { RegistrarArticuloComponent } from './components/author/registrar-articulo/registrar-articulo.component';
 import { ViewArticleComponent } from './components/author/view-article/view-article.component';
+import { RegistroCategoriaComponent } from './components/administrator/registro-categoria/registro-categoria.component';
+import { MiInformacionComponent } from './components/mi-informacion/mi-informacion.component';
+import { BuscarUsuariosComponent } from './components/administrator/buscar-usuarios/buscar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ViewArticleComponent } from './components/author/view-article/view-arti
     SinPermisosComponent,
     HomeAuthorComponent,
     RegistrarArticuloComponent,
-    ViewArticleComponent
+    ViewArticleComponent,
+    RegistroCategoriaComponent,
+    MiInformacionComponent,
+    BuscarUsuariosComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatButtonModule,

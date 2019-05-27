@@ -1,20 +1,28 @@
 <h1 style="padding: 16px;">Registrar articulo</h1>
 <div style="padding: 0 16px 16px 16px;">
-    <form [formGroup]="articleForm">
-        <mat-form-field class="full-width">
-            <input matInput placeholder="Título" formControlName="title">
-            <mat-error *ngIf="title.hasError('required')">
-                El título es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <textarea matInput placeholder="Resumen" formControlName="description" rows="5"></textarea>
-            <mat-error *ngIf="description.hasError('required')">
-                El resumen es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
-    </form>
 
-    <button [disabled]="articleForm.invalid" mat-raised-button (click)="registerArticle()">Registrar</button>
-    <button style="margin-left: 10px;" (click)="articleForm.reset()" mat-raised-button>Cancelar</button>
+    <mat-card>
+        <form [formGroup]="articleForm">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Título" formControlName="title">
+                <mat-error *ngIf="title.hasError('required')">
+                    El título es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Resumen" formControlName="description" rows="5"></textarea>
+                <mat-error *ngIf="description.hasError('required')">
+                    El resumen es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <div class="full-width file">
+                <label>Archivo del artículo</label>
+                <input type="file" (change)="onChange($event)">
+            </div>
+        </form>
+
+        <button [disabled]="articleForm.invalid" class="primary" mat-raised-button (click)="registerArticle()">Registrar</button>
+        <button style="margin-left: 10px;" (click)="articleForm.reset()" mat-raised-button>Cancelar</button>
+
+    </mat-card>
 </div>

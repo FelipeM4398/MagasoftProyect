@@ -18,13 +18,20 @@ export class RegistrarArticuloComponent implements OnInit {
     description: new FormControl('', Validators.required),
   });
 
+  file: any;
+  formData = new FormData();
+
   constructor(public articleService: ArticleService) { }
 
   ngOnInit() {
   }
 
+  onChange(event) {
+    this.file = event.target.files[0];
+  }
+
   registerArticle() {
-    if (this.articleForm.invalid) {
+    if (this.articleForm.invalid || this.file == null) {
       return;
     } else {
       this.article = this.articleForm.value;
@@ -32,7 +39,10 @@ export class RegistrarArticuloComponent implements OnInit {
       this.article.userIdUser = JSON.parse(localStorage.getItem('currentUser')).idUser;
       this.article.typeUser = JSON.parse(localStorage.getItem('currentUser')).privilegesTypeUser;
       const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
-
+      this.articleService.uploadArchive(this.file).subscribe(
+        data => console.log(data),
+        error => console.log(error)
+      );
       this.articleService.createArticle(this.article, token).subscribe(
         data => {
                   if (data.message === 'Invalid Token') {

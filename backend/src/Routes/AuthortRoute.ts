@@ -4,13 +4,15 @@
 import { Router, Request, Response } from 'express';
 import User from '../entity/UserEntity';
 import ArticleService from '../Services/ArticleService';
+import UserService from '../Services/UserService';
+import Article from '../entity/ArticleEntity';
 
 /**
  * Instances
  */
 const authorRouter = Router();
 const articleService = new ArticleService();
-
+const userService = new UserService();
 /****
  * Message general
  */
@@ -25,9 +27,10 @@ const handleMessage = (response, code, message) => response.status(code).json({ 
 */
 
 authorRouter.post('/createArticle', async (request: Request, response: Response, next) => {
-    const { title, description, publicationDate, userIdUser, typeUser } = request.body;
+    const { title, description, publicationDate, userIdUser, typeUser, nameCategory, urlFile } = request.body;
 	try {
-		await articleService.createArticle(title, description, publicationDate, userIdUser, typeUser);
+		const category = await articleService.viewCategory(nameCategory);
+		await articleService.createArticle(title, description, publicationDate, userIdUser, typeUser, category, urlFile);
 		handleMessage(response, 202, 'Article created');
 	} catch (error) {
 		handleMessage(response, 404, 'Error not found');
@@ -46,5 +49,32 @@ authorRouter.post('/ViewArticle', async (request: Request, response: Response, n
 		handleMessage(response, 404, 'Error not found');
 	}
 });
+
+
+/*****
+ * Endpoint for update info User
+ */
+authorRouter.patch('/updateInfo', async (request: Request, response: Response, next) => {
+	const {nameUser, lastNameUser, birthDateUser, identificationUser} = request.body;
+	try {
+		await userService.uptadeUser(nameUser, lastNameUser, birthDateUser, identificationUser)
+		handleMessage(response, 201, 'updated info')
+	} catch (error) {
+		console.log(error)
+		handleMessage(response, 404, 'Error update info')
+	}
+})
+/****
+ * Endpoint for view info
+ */
+authorRouter.post('/viewInfo',  async (request: Request, response: Response, next) => {
+	const {identificationUser} = request.body;
+	try {
+		const data = await userService.infoUser(identificationUser);
+		handleMessage(response, 200, data);
+	} catch (error) {
+		handleMessage(response, 404, 'Error user not found')
+	}
+})
 
 export default authorRouter;

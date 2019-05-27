@@ -33,4 +33,14 @@ export class ArticleService {
     });
     return this.http.post<any>(`${this.apiUrl}ViewArticle`, {email}, httpOptions);
   }
+
+  uploadArchive(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('fileName', file.name);
+    httpOptions.headers = new HttpHeaders({
+      'Content-Type':  'multipart/form-data',
+    });
+    return this.http.post<any>('', formData, httpOptions);
+  }
 }

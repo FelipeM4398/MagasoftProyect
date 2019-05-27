@@ -11,8 +11,4 @@ export default class Category {
     @Column('varchar', {length: 50})
     nameCategory
 
-    @ManyToMany(type => Article)
-    @JoinTable()
-    article: Article[];
-
 }

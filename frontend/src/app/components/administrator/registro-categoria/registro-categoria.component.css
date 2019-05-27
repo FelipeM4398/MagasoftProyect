@@ -1,0 +1,30 @@
+.container-categoria {
+    display: grid;
+    grid-gap: 10px;
+    width: calc(100% - 20px);
+    margin: auto;
+    grid-template-columns: .8fr 1fr;
+}
+
+.full-width {
+    display: block;
+}
+
+.mat-list-item {
+    padding: unset !important; 
+}
+
+.mat-card {
+    height: min-content;
+}
+
+@media (max-width: 819px) {
+    .container-categoria {
+        grid-template-columns: 1fr;
+        padding: 16px 0 !important;
+    }
+}
+
+.mat-list-base .mat-list-item.mat-list-item-with-avatar, .mat-list-base .mat-list-option.mat-list-item-with-avatar {
+    height: 36px !important;
+}

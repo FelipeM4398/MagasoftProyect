@@ -1,0 +1,29 @@
+<h1 style="padding: 16px;">Registrar categoria</h1>
+<div class="container-categoria" style="padding: 0 16px 16px 16px;">
+  <mat-card>
+   <h2>Categorias</h2>
+   <mat-list>
+
+      <mat-list-item *ngFor="let category of categories">
+        <mat-icon mat-list-icon>category</mat-icon>
+        <div mat-line>{{category.nameCategory}}</div>
+      </mat-list-item>
+
+    </mat-list>
+  </mat-card>
+
+  <mat-card>
+      <h2>Nueva categoria</h2>
+
+      <form [formGroup]="categoryForm" (ngSubmit)="registerCategory()">
+          <mat-form-field class="full-width">
+              <textarea matInput placeholder="Nombre" formControlName="nameCategory" rows="5"></textarea>
+              <mat-error *ngIf="nameCategory.hasError('required')">
+                  El nombre es <strong>requerido</strong>
+              </mat-error>
+          </mat-form-field>
+      </form>
+      <button (click)="registerCategory()" [disabled]="categoryForm.invalid" class="primary" mat-raised-button>Registrar</button>
+      <button (click)="categoryForm.reset()" class="danger" style="margin-left: 10px;" mat-raised-button>Cancelar</button>
+  </mat-card>
+</div>
