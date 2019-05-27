@@ -57,7 +57,7 @@ authorRouter.post('/ViewArticle', async (request: Request, response: Response, n
 authorRouter.patch('/updateInfo', async (request: Request, response: Response, next) => {
 	const {nameUser, lastNameUser, birthDateUser, identificationUser} = request.body;
 	try {
-		await userService.uptadeUser(nameUser, lastNameUser, birthDateUser, identificationUser)
+		await userService.uptadeUser(nameUser, identificationUser)
 		handleMessage(response, 201, 'updated info')
 	} catch (error) {
 		console.log(error)

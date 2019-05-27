@@ -15,6 +15,14 @@
                     El resumen es <strong>requerido</strong>
                 </mat-error>
             </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Categoria</mat-label>
+                <mat-select name="h_autor" formControlName="category">
+                    <mat-option *ngFor="let category of categories" [value]="category.nameCategory" >
+                        {{category.nameCategory}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <div class="full-width file">
                 <label>Archivo del artículo</label>
                 <input type="file" (change)="onChange($event)">

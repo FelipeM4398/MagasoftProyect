@@ -3,6 +3,8 @@ import { Article } from 'src/app/_interfaces/article';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article/article.service';
 import Swal from 'sweetalert2';
+import { OptionsService } from 'src/app/services/options/options.service';
+import { Category } from 'src/app/_interfaces/category';
 
 @Component({
   selector: 'app-registrar-articulo',
@@ -12,18 +14,29 @@ import Swal from 'sweetalert2';
 export class RegistrarArticuloComponent implements OnInit {
 
   article: Article;
+  categories: Category[];
 
   articleForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required)
   });
 
   file: any;
   formData = new FormData();
 
-  constructor(public articleService: ArticleService) { }
+  constructor(public articleService: ArticleService, public optionsService: OptionsService) { }
 
   ngOnInit() {
+    this.getCategories();
+  }
+
+  getCategories() {
+    const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
+    this.optionsService.getCategories(token).subscribe(
+      (data: any) => this.categories = data.message,
+      (error: any) => console.error(error)
+    );
   }
 
   onChange(event) {
