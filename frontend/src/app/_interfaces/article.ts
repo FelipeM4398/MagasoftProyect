@@ -4,4 +4,5 @@ export interface Article {
     publicationDate: Date;
     userIdUser: number;
     typeUser: string;
+    urlFile: string;
 }

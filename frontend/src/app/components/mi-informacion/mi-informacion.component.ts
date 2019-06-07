@@ -33,7 +33,7 @@ export class MiInformacionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.identificationUser.disable();
+    this.identificationUser.enable();
     this.userForm.valueChanges.subscribe(
       data => this.dataChange = true,
     );

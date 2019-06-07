@@ -15,14 +15,14 @@ export class RegistrarArticuloComponent implements OnInit {
 
   article: Article;
   categories: Category[];
+  file: any;
 
   articleForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required)
+    nameCategory: new FormControl('', Validators.required),
   });
 
-  file: any;
   formData = new FormData();
 
   constructor(public articleService: ArticleService, public optionsService: OptionsService) { }
@@ -48,7 +48,11 @@ export class RegistrarArticuloComponent implements OnInit {
       return;
     } else {
       this.article = this.articleForm.value;
+      console.log( this.articleForm.value);
       this.article.publicationDate = new Date();
+// tslint:disable-next-line: max-line-length
+      this.article.urlFile = `C:/Users/luisf/OneDrive/Documentos/Universidad/Ingeniería de Software III/MAGASOFT/MagasoftProyect/frontend/src/assets/articles/${this.file.name}`;
+      console.log(this.article);
       this.article.userIdUser = JSON.parse(localStorage.getItem('currentUser')).idUser;
       this.article.typeUser = JSON.parse(localStorage.getItem('currentUser')).privilegesTypeUser;
       const token = 'bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;

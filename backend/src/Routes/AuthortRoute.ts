@@ -6,7 +6,7 @@ import User from '../entity/UserEntity';
 import ArticleService from '../Services/ArticleService';
 import UserService from '../Services/UserService';
 import Article from '../entity/ArticleEntity';
-
+import fs from 'fs';
 /**
  * Instances
  */
@@ -29,10 +29,20 @@ const handleMessage = (response, code, message) => response.status(code).json({ 
 authorRouter.post('/createArticle', async (request: Request, response: Response, next) => {
     const { title, description, publicationDate, userIdUser, typeUser, nameCategory, urlFile } = request.body;
 	try {
+		console.log(urlFile)
 		const category = await articleService.viewCategory(nameCategory);
-		await articleService.createArticle(title, description, publicationDate, userIdUser, typeUser, category, urlFile);
+		fs.writeFile(urlFile, 'base64', (err) => {
+			if (err) {
+			  console.log(err);
+			} else {	
+				console.log('guardado');
+				
+			}
+		  });
+		//await articleService.createArticle(title, description, publicationDate, userIdUser, typeUser, category, urlFile);
 		handleMessage(response, 202, 'Article created');
 	} catch (error) {
+		console.log(error)
 		handleMessage(response, 404, 'Error not found');
 	}
 });
@@ -57,7 +67,8 @@ authorRouter.post('/ViewArticle', async (request: Request, response: Response, n
 authorRouter.patch('/updateInfo', async (request: Request, response: Response, next) => {
 	const {nameUser, lastNameUser, birthDateUser, identificationUser} = request.body;
 	try {
-		await userService.uptadeUser(nameUser, identificationUser)
+		console.log(nameUser, identificationUser)
+		await userService.uptadeUser(nameUser, lastNameUser, birthDateUser, identificationUser)
 		handleMessage(response, 201, 'updated info')
 	} catch (error) {
 		console.log(error)

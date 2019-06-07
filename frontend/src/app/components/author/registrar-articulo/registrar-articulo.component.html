@@ -17,7 +17,7 @@
             </mat-form-field>
             <mat-form-field class="full-width">
                 <mat-label>Categoria</mat-label>
-                <mat-select name="h_autor" formControlName="category">
+                <mat-select name="h_autor" formControlName="nameCategory">
                     <mat-option *ngFor="let category of categories" [value]="category.nameCategory" >
                         {{category.nameCategory}}
                     </mat-option>

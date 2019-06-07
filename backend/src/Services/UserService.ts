@@ -7,12 +7,8 @@ import User from '../entity/UserEntity';
 export default class UserService {
     constructor() {}
 
-    uptadeUser(nameUser, identificationUser ) {
-        return getConnection()
-               .createQueryBuilder().update(User)
-               .set({nameUser})
-               .where("identificationUser = :identificationUser", {identificationUser})
-               .execute();
+    uptadeUser(nameUser, lastNameUser, birthDateUser, identificationUser ) {
+        return getConnection().query(`UPDATE user SET nameUser=?, lastNameUser=?, birthDateUser=? WHERE identificationUser=?`, [nameUser, lastNameUser, birthDateUser, identificationUser])
     }
 
     infoUser(identificationUser) {
