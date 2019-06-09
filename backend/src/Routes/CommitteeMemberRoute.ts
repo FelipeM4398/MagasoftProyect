@@ -20,6 +20,9 @@ const handleMessage = (response, code, message) => response.status(code).json({ 
 /****
  * Endpoinst
  */
+/***
+ * Endpoint for create article Review
+ */
 CommitteMemberRouter.post('/createArticleReview', async (request: Request, response: Response, next) => {
     const {dateReceivedArticleReview, stateArticleReview, observationArticleReview, userIdUser} = request.body;
     try {

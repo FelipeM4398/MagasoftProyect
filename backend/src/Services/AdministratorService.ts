@@ -86,7 +86,7 @@ export default class AdministratorService implements UserInterfaceService {
 			'Welcome to Magasoft',
 			`Welcome ${nameUser} ${lastNameUser} to Magasoft, your role is ${typeUser.privilegesTypeUser.toLocaleUpperCase()}`
 		);
-		if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'AUTHOR') {
+		if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'AUTOR') {
 			getConnection()
 				.createQueryBuilder()
 				.insert()
@@ -103,7 +103,23 @@ export default class AdministratorService implements UserInterfaceService {
 				})
 				.execute();
 			mail.sendEmail();
-		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'EVALUATOR') {
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'ADMNISTRADOR') {
+			getConnection()
+				.createQueryBuilder()
+				.insert()
+				.into(User)
+				.values({
+					nameUser,
+					lastNameUser,
+					birthDateUser,
+					identificationUser,
+					emailUser,
+					passwordUser: this.createHash(passwordUser),
+					typeUser
+				})
+				.execute();
+			mail.sendEmail();
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'EVALUADOR') {
 			getConnection()
 				.createQueryBuilder()
 				.insert()
@@ -121,7 +137,7 @@ export default class AdministratorService implements UserInterfaceService {
 				})
 				.execute();
 			mail.sendEmail();
-		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'COMMITTEE') {
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'MIEMBRO DEL COMITE') {
 			getConnection()
 				.createQueryBuilder()
 				.insert()
@@ -137,7 +153,7 @@ export default class AdministratorService implements UserInterfaceService {
 				})
 				.execute();
 			mail.sendEmail();
-		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'READER') {
+		} else if (typeUser.privilegesTypeUser.toLocaleUpperCase() === 'LECTOR') {
 			getConnection()
 				.createQueryBuilder()
 				.insert()

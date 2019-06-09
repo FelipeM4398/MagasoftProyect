@@ -29,10 +29,8 @@ const handleMessage = (response, code, message) => response.status(code).json({ 
   */
  administratorRouter.post('/createUser', async (request: Request, response: Response, next) => {
 	let { nameUser, lastNameUser, birthDateUser, identificationUser, emailUser, passwordUser, hodbed, typeUser, linkCvlackEvaluator, levelEducationEvaluator } = request.body;
-    console.log(typeUser)
     try {       
         const typeUserData = await administratorService.consultTypeUser(typeUser);
-        console.log(typeUserData);
         const hodBedData = await administratorService.consultHotService(hodbed);
         await administratorService.createUser(nameUser.toLocaleUpperCase(), lastNameUser.toLocaleUpperCase(), birthDateUser, identificationUser, emailUser, passwordUser, hodBedData, typeUserData, levelEducationEvaluator.toLocaleUpperCase(),  linkCvlackEvaluator);
 		await handleMessage(response, 200, 'Created user');

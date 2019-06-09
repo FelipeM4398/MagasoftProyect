@@ -32,6 +32,7 @@ authRouter.post('/signUp', async (request: Request, response: Response, next) =>
         const token = sign({identificationUser: data[0].identificationUser, emailUser:data[0].emailUser, passwordUser:data[0].passwordUser, privilegesTypeUser:data[0].privilegesTypeUser}, 'secretMagasoft')
         handleMessage(response, 200, Object.assign({token}, data[0]))
     } catch (error) {
+        console.log(error);
         handleMessage(response, 404, 'Error users')
     }
 })
