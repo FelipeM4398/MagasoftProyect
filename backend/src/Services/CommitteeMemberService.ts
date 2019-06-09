@@ -15,13 +15,14 @@ export default class CommitteeMemberService {
      * @param articleInfo 
      * @param userIdUser 
      */
-    async createArticleReview(dateReceivedArticleReview, stateArticleReview, observationArticleReview, articleInfo, userIdUser) {
+    async createArticleReview(dateReceivedArticleReview, stateArticleReview, observationArticleReview, userIdUser, articleInfo) {
         const articleReview = new ArticleReview();
         articleReview.dateReceivedArticleReview = dateReceivedArticleReview;
         articleReview.stateArticleReview = stateArticleReview;
         articleReview.observationArticleReview = observationArticleReview;
         articleReview.article = articleInfo;
         articleReview.user = userIdUser;
+        console.log(articleReview)
         await getConnection().manager.save(articleReview);
 
     }

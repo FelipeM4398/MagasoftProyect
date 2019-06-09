@@ -47,8 +47,8 @@ export default class ArticleService {
 	 * @returns
 	 * @memberof ArticleService
 	 */
-	viewArticlesbyIddentifaction(userIdUser) {
-		return getConnection().query(`SELECT * FROM user u, article ar WHERE u.idUser=? and u.idUser=ar.userIdUser`, [userIdUser])
+	viewArticlesbyIddentifaction(idUser, title) {
+		return getConnection().getRepository(Article).find({ user: {idUser}, title});
 	  }
 
 	/**
