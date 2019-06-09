@@ -1,0 +1,25 @@
+.mat-card-subtitle {
+    color: #D7CBD7 !important;
+}
+
+.mat-card-avatar {
+    background: #D7CBD7 !important;
+}
+
+.container-home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .container-home {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 467px) {
+    .container-home {
+        grid-template-columns: 1fr; 
+    }
+}

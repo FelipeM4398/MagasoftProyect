@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import {
           MatCardModule, MatInputModule, MatButtonModule, MatDividerModule, MatToolbarModule,
           MatSidenavModule, MatMenuModule, MatIconModule, MatListModule, MatExpansionModule,
-          MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+          MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatTooltipModule, MatCheckboxModule
         } from '@angular/material';
 import { HomeComponent } from './components/administrator/home/home.component';
 import { RegistroAutorComponent } from './components/administrator/registro-autor/registro-autor.component';
@@ -18,12 +18,18 @@ import { RegistroEvaluadorComponent } from './components/administrator/registro-
 
 import { HomeAuthorComponent } from './components/author/home/home-author.component';
 
+import { HomeComiteComponent } from './components/comite/home/home-comite.component';
+
 import { SinPermisosComponent } from './components/sin-permisos/sin-permisos.component';
 import { RegistrarArticuloComponent } from './components/author/registrar-articulo/registrar-articulo.component';
 import { ViewArticleComponent } from './components/author/view-article/view-article.component';
 import { RegistroCategoriaComponent } from './components/administrator/registro-categoria/registro-categoria.component';
 import { MiInformacionComponent } from './components/mi-informacion/mi-informacion.component';
 import { BuscarUsuariosComponent } from './components/administrator/buscar-usuarios/buscar-usuarios.component';
+import { SelectArticleComponent } from './components/comite/select-article/select-article.component';
+import { RewiewFormatComponent } from './components/comite/rewiew-format/rewiew-format.component';
+import { RewiewFiguresComponent } from './components/comite/rewiew-figures/rewiew-figures.component';
+import { RewiewContentComponent } from './components/comite/rewiew-content/rewiew-content.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +45,19 @@ import { BuscarUsuariosComponent } from './components/administrator/buscar-usuar
     ViewArticleComponent,
     RegistroCategoriaComponent,
     MiInformacionComponent,
-    BuscarUsuariosComponent
+    BuscarUsuariosComponent,
+    HomeComiteComponent,
+    SelectArticleComponent,
+    RewiewFormatComponent,
+    RewiewFiguresComponent,
+    RewiewContentComponent,
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatButtonModule,
     AppRoutingModule, BrowserAnimationsModule, MatDividerModule, MatMenuModule,
     HttpClientModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule,
-    MatExpansionModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule
+    MatExpansionModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+    MatTooltipModule, MatCheckboxModule
   ],
   providers: [ MatDatepickerModule ],
   bootstrap: [AppComponent]

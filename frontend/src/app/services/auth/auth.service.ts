@@ -50,6 +50,8 @@ export class AuthService {
       return 'administrator/home';
     } else if ( rol === 'AUTHOR' ) {
       return 'author/home';
+    } else if ( rol === 'COMMITTEE' ) {
+      return 'committee/home';
     } else {
       return null;
     }
