@@ -85,4 +85,18 @@ authorRouter.post('/viewInfo',  async (request: Request, response: Response, nex
 	}
 })
 
+/****
+ * Endpoint for view article review
+ */
+authorRouter.post('/viewArticleReview',  async (request: Request, response: Response, next) => {
+	const {identificationUser} = request.body;
+	try {
+		const userInfo = await userService.infoUser(identificationUser);
+		const data = await articleService.viewReviewArticles(userInfo.idUser);
+		handleMessage(response, 200, data);
+	} catch (error) {
+		handleMessage(response, 404, 'Error user not found')
+	}
+})
+
 export default authorRouter;

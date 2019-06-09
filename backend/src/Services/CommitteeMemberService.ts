@@ -1,6 +1,5 @@
 import { getConnection } from 'typeorm';
 import ArticleReview from '../entity/articleReviewEntity';
-import Article from '../entity/ArticleEntity';
 import EvaluationArticle from '../entity/EvaluationArticleEntity';
 
 

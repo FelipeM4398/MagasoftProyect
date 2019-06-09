@@ -1,6 +1,7 @@
 import Article from '../entity/ArticleEntity';
 import { getConnection } from 'typeorm';
 import Category from '../entity/CategoryEntity';
+import ArticleReview from '../entity/articleReviewEntity';
 
 export default class ArticleService {
 	constructor() {}
@@ -60,5 +61,17 @@ export default class ArticleService {
 	viewCategory(nameCategory) {
 		return getConnection().getRepository(Category).createQueryBuilder("category").where("category.nameCategory = :nameCategory", {nameCategory}).getOne();
 	}
+
+	/**
+	 *Method for view Articles of author
+	 *
+	 * @param {*} email
+	 * @returns
+	 * @memberof ArticleService
+	 */
+	viewReviewArticles(idUser) {
+		return getConnection().getRepository(ArticleReview).find({ user: {idUser}});
+	  }
+
 
 }
