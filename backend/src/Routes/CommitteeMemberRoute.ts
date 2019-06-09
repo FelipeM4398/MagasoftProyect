@@ -27,10 +27,72 @@ CommitteMemberRouter.post('/createArticleReview', async (request: Request, respo
     const {dateReceivedArticleReview, stateArticleReview, observationArticleReview, titleArticle, identificationUser} = request.body;
     try {
         const userInfo = await userService.infoUser(identificationUser);
-        const articleInfo = await articleService.viewArticlesbyIddentifaction(userInfo.idUser, titleArticle);
-        const { idArticle } = articleInfo[0];
-        await committeService.createArticleReview(dateReceivedArticleReview, stateArticleReview, observationArticleReview, userInfo.idUser, idArticle);
-        handleMessage(response, 202, 'Created article review');
+        if (userInfo === undefined ) {
+            handleMessage(response, 202, 'user not found');
+        } else {
+            const articleInfo = await articleService.viewArticlesbyIddentifaction(userInfo.idUser, titleArticle);
+            if (Object.keys(articleInfo).length === 0 && Object.keys(articleInfo).length === 0 ) {
+                handleMessage(response, 202, 'article not found');
+            }
+            else {
+                const { idArticle } = articleInfo[0];
+                await committeService.createArticleReview(dateReceivedArticleReview, stateArticleReview, observationArticleReview, userInfo.idUser, idArticle);
+                handleMessage(response, 202, 'Created article review');
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        handleMessage(response, 404, 'Error for created article review')
+    }
+})
+
+/***
+ * Endpoint for update article Review
+ */
+CommitteMemberRouter.patch('/UpdateArticleReview', async (request: Request, response: Response, next) => {
+    const {stateArticleReview, titleArticle, identificationUser} = request.body;
+    try {
+        const userInfo = await userService.infoUser(identificationUser);
+        if (userInfo === undefined ) {
+            handleMessage(response, 202, 'user not found');
+        } else {
+            const articleInfo = await articleService.viewArticlesbyIddentifaction(userInfo.idUser, titleArticle);
+            if (Object.keys(articleInfo).length === 0 && Object.keys(articleInfo).length === 0 ) {
+                handleMessage(response, 202, 'article not found');
+            }
+            else {
+                const { idArticle } = articleInfo[0];
+                await committeService.updateArticleReview(stateArticleReview, userInfo.idUser, idArticle);
+                handleMessage(response, 202, 'updating article review');
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        handleMessage(response, 404, 'Error for created article review')
+    }
+})
+
+
+/***
+ * Endpoint for create evaluation article
+ */
+CommitteMemberRouter.post('/createEvaluationArticle', async (request: Request, response: Response, next) => {
+    const {observationEvaluation, quealificationEvaluation, dateReceivedEvaluation, dateSendEvaluation, titleArticle, identificationUser} = request.body;
+    try {
+        const userInfo = await userService.infoUser(identificationUser);
+        if (userInfo === undefined ) {
+            handleMessage(response, 202, 'user not found');
+        } else {
+            const articleInfo = await articleService.viewArticlesbyIddentifaction(userInfo.idUser, titleArticle);
+            if (Object.keys(articleInfo).length === 0 && Object.keys(articleInfo).length === 0 ) {
+                handleMessage(response, 202, 'article not found');
+            }
+            else {
+                const { idArticle } = articleInfo[0];
+                await committeService.createEvaluationArticle(observationEvaluation, quealificationEvaluation, dateReceivedEvaluation, dateSendEvaluation, idArticle, userInfo.idUser);
+                handleMessage(response, 202, 'created evaluation review');
+            }
+        }
     } catch (error) {
         console.log(error)
         handleMessage(response, 404, 'Error for created article review')

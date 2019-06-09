@@ -1,5 +1,7 @@
 import { getConnection } from 'typeorm';
 import ArticleReview from '../entity/articleReviewEntity';
+import Article from '../entity/ArticleEntity';
+import EvaluationArticle from '../entity/EvaluationArticleEntity';
 
 
 
@@ -22,9 +24,40 @@ export default class CommitteeMemberService {
         articleReview.observationArticleReview = observationArticleReview;
         articleReview.article = articleInfo;
         articleReview.user = userIdUser;
-        console.log(articleReview)
         await getConnection().manager.save(articleReview);
+    }
+
+    /**
+     * Method for update article review
+     * @param stateArticleReview 
+     * @param userIdUser 
+     * @param articleIdArticle 
+     */
+    async updateArticleReview(stateArticleReview, userIdUser, articleIdArticle) {
+        return getConnection().query(`UPDATE article_review SET stateArticleReview=? WHERE userIdUser=? and articleIdArticle=?`, [stateArticleReview, userIdUser, articleIdArticle])
 
     }
 
+    /**
+     * Method for create evaluation
+     * @param observationEvaluation 
+     * @param quealificationEvaluation 
+     * @param dateReceivedEvaluation 
+     * @param dateSendEvaluation 
+     * @param articleIdArticle 
+     * @param userIdUser 
+     */
+    async createEvaluationArticle(observationEvaluation, quealificationEvaluation, dateReceivedEvaluation, dateSendEvaluation, articleIdArticle, userIdUser) {
+        const evaluationArticle = new EvaluationArticle();
+        evaluationArticle.observationEvaluation = observationEvaluation;
+        evaluationArticle.quealificationEvaluation = quealificationEvaluation;
+        evaluationArticle.dateReceivedEvaluation = dateReceivedEvaluation;
+        evaluationArticle.dateSendEvaluation = dateSendEvaluation;
+        evaluationArticle.article = articleIdArticle;
+        evaluationArticle.user = userIdUser;
+        await getConnection().manager.save(evaluationArticle);
+
+    }
+
+    
 }
