@@ -4,7 +4,6 @@
 import { Router, Request, Response } from 'express';
 import ArticleService from '../Services/ArticleService';
 import UserService from '../Services/UserService';
-import fs from 'fs';
 import CommitteeMemberService from '../Services/CommitteeMemberService';
 /**
  * Instances
