@@ -17,7 +17,7 @@ export default class ArticleService {
 	 * @memberof ArticleService
 	 */
 	async createArticle(title, description, publicationDate, user, typeUser: string, categoryFind: Category, urlFile) {
-		if (typeUser.toLocaleUpperCase() === 'AUTHOR') {	
+		if (typeUser.toLocaleUpperCase() === 'AUTOR') {	
 			const article = new Article();
 			article.title = title;
 			article.description = description;

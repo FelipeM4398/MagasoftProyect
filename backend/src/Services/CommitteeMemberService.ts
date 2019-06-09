@@ -7,6 +7,14 @@ export default class CommitteeMemberService {
 
     constructor() {}
 
+    /**
+     * Method for create article review
+     * @param dateReceivedArticleReview 
+     * @param stateArticleReview 
+     * @param observationArticleReview 
+     * @param articleInfo 
+     * @param userIdUser 
+     */
     async createArticleReview(dateReceivedArticleReview, stateArticleReview, observationArticleReview, articleInfo, userIdUser) {
         const articleReview = new ArticleReview();
         articleReview.dateReceivedArticleReview = dateReceivedArticleReview;
