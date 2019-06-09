@@ -15,6 +15,11 @@ import { AuthGuard } from './_guards/auth.guard';
 import { RegistroCategoriaComponent } from './components/administrator/registro-categoria/registro-categoria.component';
 import { MiInformacionComponent } from './components/mi-informacion/mi-informacion.component';
 import { BuscarUsuariosComponent } from './components/administrator/buscar-usuarios/buscar-usuarios.component';
+import { HomeComiteComponent } from './components/comite/home/home-comite.component';
+import { SelectArticleComponent } from './components/comite/select-article/select-article.component';
+import { RewiewFormatComponent } from './components/comite/rewiew-format/rewiew-format.component';
+import { RewiewFiguresComponent } from './components/comite/rewiew-figures/rewiew-figures.component';
+import { RewiewContentComponent } from './components/comite/rewiew-content/rewiew-content.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,6 +40,16 @@ const routes: Routes = [
       { path: 'home', component: HomeAuthorComponent },
       { path: 'registrar/article', component: RegistrarArticuloComponent },
       { path: 'myarticles', component: ViewArticleComponent },
+    ]
+  },
+  {
+    path: 'committee', canActivate: [AuthGuard],
+    children: [
+      { path: 'home', component: HomeComiteComponent },
+      { path: 'select', component: SelectArticleComponent },
+      { path: 'rewiew/format', component: RewiewFormatComponent },
+      { path: 'rewiew/figures', component: RewiewFiguresComponent },
+      { path: 'rewiew/content', component: RewiewContentComponent },
     ]
   },
   { path: 'info', component: MiInformacionComponent, canActivate: [AuthGuard] },

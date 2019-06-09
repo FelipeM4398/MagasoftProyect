@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     if (currentUser) {
       const rol = currentUser.privilegesTypeUser;
       const url = route.routeConfig.path;
-      console.log(url);
 
       return this.checkPermisions(rol, url);
     }

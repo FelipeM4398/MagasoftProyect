@@ -59,6 +59,11 @@
                 Mis articulos
             </a>
 
+            <a mat-list-item routerLink="committee/select" *ngIf="currentUser.privilegesTypeUser === 'COMMITTEE'">
+                <mat-icon mat-list-icon>check_circle</mat-icon>
+                Revisar articulo
+            </a>
+
             <a mat-list-item routerLink="info">
                 <mat-icon mat-list-icon>account_circle</mat-icon>
                 Mi información
