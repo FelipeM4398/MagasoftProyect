@@ -1,5 +1,4 @@
 import Article from '../entity/ArticleEntity';
-import User from '../entity/UserEntity';
 import { getConnection } from 'typeorm';
 import Category from '../entity/CategoryEntity';
 
@@ -40,6 +39,17 @@ export default class ArticleService {
 	viewArticles(email) {
       return getConnection().query(`SELECT * FROM user u, article ar WHERE u.emailUser=? and u.idUser=ar.userIdUser`, [email])
 	}
+
+	/**
+	 *Method for view Articles of author
+	 *
+	 * @param {*} email
+	 * @returns
+	 * @memberof ArticleService
+	 */
+	viewArticlesbyIddentifaction(userIdUser) {
+		return getConnection().query(`SELECT * FROM user u, article ar WHERE u.idUser=? and u.idUser=ar.userIdUser`, [userIdUser])
+	  }
 
 	/**
 	 *

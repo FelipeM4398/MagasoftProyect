@@ -2,10 +2,8 @@
  * Modules
  */
 import { Router, Request, Response } from 'express';
-import User from '../entity/UserEntity';
 import ArticleService from '../Services/ArticleService';
 import UserService from '../Services/UserService';
-import Article from '../entity/ArticleEntity';
 import fs from 'fs';
 /**
  * Instances
@@ -38,7 +36,7 @@ authorRouter.post('/createArticle', async (request: Request, response: Response,
 				
 			}
 		  });
-		//await articleService.createArticle(title, description, publicationDate, userIdUser, typeUser, category, urlFile);
+		await articleService.createArticle(title, description, publicationDate, userIdUser, typeUser, category, urlFile);
 		handleMessage(response, 202, 'Article created');
 	} catch (error) {
 		console.log(error)

@@ -1,5 +1,4 @@
 import { getConnection } from 'typeorm';
-import User from '../entity/UserEntity';
 
 
 

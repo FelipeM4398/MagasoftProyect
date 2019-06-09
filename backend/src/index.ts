@@ -10,6 +10,7 @@ import Cors from 'cors';
 import authRouter from './Routes/AuthRoute';
 import AuthToken from './middlewares/AuthToken';
 import authorRouter from './Routes/AuthortRoute';
+import CommitteMemberRouter from './Routes/CommitteeMemberRoute';
 /**
 * Herencia de express 
 */
@@ -41,6 +42,7 @@ app.use('/auth', authRouter);
 app.use(AuthToken);
 app.use('/adminstrator', adminstratorRoutes);
 app.use('/author', authorRouter);
+app.use('/committeeMember', CommitteMemberRouter);
 /**
 *Servidor
 */
