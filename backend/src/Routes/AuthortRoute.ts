@@ -29,7 +29,6 @@ const handleMessage = (response, code, message) => response.status(code).json({ 
 authorRouter.post('/createArticle', async (request: Request, response: Response, next) => {
     const { title, description, publicationDate, userIdUser, typeUser, nameCategory, urlFile } = request.body;
 	try {
-		console.log(urlFile)
 		const category = await articleService.viewCategory(nameCategory);
 		fs.writeFile(urlFile, 'base64', (err) => {
 			if (err) {
