@@ -32,4 +32,4 @@ CommitteMemberRouter.post('/createArticleReview', async (request: Request, respo
     }
 })
 
-export default CommitteMemberRouter;
+export default CommitteMemberRouter; 
