@@ -57,6 +57,7 @@ export default class CommitteeMemberService {
         await getConnection().manager.save(evaluationArticle);
 
     }
+    
 
     
 }

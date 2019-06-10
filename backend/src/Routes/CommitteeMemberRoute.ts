@@ -5,6 +5,7 @@ import { Router, Request, Response } from 'express';
 import ArticleService from '../Services/ArticleService';
 import UserService from '../Services/UserService';
 import CommitteeMemberService from '../Services/CommitteeMemberService';
+import QuestionService from '../Services/QuestionService';
 /**
  * Instances
  */
@@ -12,6 +13,7 @@ const CommitteMemberRouter = Router();
 const articleService = new ArticleService();
 const userService = new UserService();
 const committeService = new CommitteeMemberService();
+const questions = new QuestionService();
 /****
  * Message general
  */
@@ -96,6 +98,16 @@ CommitteMemberRouter.post('/createEvaluationArticle', async (request: Request, r
     } catch (error) {
         console.log(error)
         handleMessage(response, 404, 'Error for created article review')
+    }
+})
+
+CommitteMemberRouter.get('/viewQuestions', async (request: Request, response: Response, next) => {
+    try {
+        const data = await questions.getQuestions();
+        handleMessage(response, 200, data);
+    } catch (error) {
+        handleMessage(response, 404, 'Error for view question')
+
     }
 })
 

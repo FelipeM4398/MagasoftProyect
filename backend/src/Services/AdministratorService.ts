@@ -189,6 +189,20 @@ export default class AdministratorService implements UserInterfaceService {
 		return getConnection().query(`SELECT * FROM category`);
 	}
 
+	/**
+	 *
+	 * Method for view view Categories
+	 * @returns
+	 * @memberof AdministratorService
+	 */
+	viewCategoriy(nameCategory) {
+		return getConnection()
+			.getRepository(Category)
+			.createQueryBuilder('category')
+			.where('category.nameCategory = :nameCategory', { nameCategory })
+			.getOne();
+	}
+
 	
 	/**
 	 *

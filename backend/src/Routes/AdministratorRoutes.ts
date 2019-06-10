@@ -4,7 +4,7 @@
 import { Router, Request, Response } from 'express';
 import AdministratorService from "../Services/AdministratorService";
 import User from '../entity/UserEntity';
-import { type } from 'os';
+import QuestionService from '../Services/QuestionService';
 
 
 /****
@@ -12,7 +12,7 @@ import { type } from 'os';
  */
 const administratorRouter = Router();
 const administratorService = new AdministratorService();
-
+const questionService = new QuestionService();
 /****
  * Message general
  */
@@ -61,6 +61,20 @@ administratorRouter.post('/createCategory',(async (request: Request, response: R
     try {
         await administratorService.createCategory(nameCategory);
         handleMessage(response, 201, 'Category created');
+    } catch (error) {
+        handleMessage(response, 201, 'error to the category created');
+    }
+}))
+
+/*****
+ * Endpoint for create categories
+ */
+administratorRouter.post('/createQuestion',(async (request: Request, response: Response, next) =>{
+    const {descriptionQuestion, nameCategory} = request.body;
+    try {
+        const category = await administratorService.viewCategoriy(nameCategory);
+        await questionService.createQuestion(descriptionQuestion, category);
+        handleMessage(response, 201, 'Category question');
     } catch (error) {
         handleMessage(response, 201, 'error to the category created');
     }
