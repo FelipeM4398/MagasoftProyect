@@ -1,0 +1,48 @@
+.mat-card-avatar {
+    background: #D7CBD7 !important;
+}
+
+.container-article {
+    margin-bottom: 20px;
+}
+
+.card-rewiew {
+    padding: 0 16px;
+    display: grid;
+    grid: "d c o";
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.description {
+    grid-area: d;
+    min-width: 90%;
+    width: 600px;
+}
+
+.check {
+    grid-area: c;
+}
+
+.observation {
+    grid-area: o;
+}
+
+@media (max-width: 768px) {
+    .card-rewiew {
+        padding: 16px;
+        grid: "d c"
+              "o o";
+    }
+
+    .description {
+        grid-area: d;
+        width: unset;
+        text-align: justify;
+    }
+
+    .check {
+        grid-area: c;
+        text-align: right;
+    }
+}

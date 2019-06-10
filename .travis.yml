@@ -37,5 +37,4 @@ script:
   - cd ../frontend
   - npm install
   - ng lint
-  - ng test --code-coverage=true --watch=false --browsers ChromeHeadless --reporters
   - ng build --prod
