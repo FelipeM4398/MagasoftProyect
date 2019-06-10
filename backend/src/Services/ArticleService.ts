@@ -1,7 +1,7 @@
 import Article from '../entity/ArticleEntity';
-import User from '../entity/UserEntity';
 import { getConnection } from 'typeorm';
 import Category from '../entity/CategoryEntity';
+import ArticleReview from '../entity/articleReviewEntity';
 
 export default class ArticleService {
 	constructor() {}
@@ -18,7 +18,7 @@ export default class ArticleService {
 	 * @memberof ArticleService
 	 */
 	async createArticle(title, description, publicationDate, user, typeUser: string, categoryFind: Category, urlFile) {
-		if (typeUser.toLocaleUpperCase() === 'AUTHOR') {	
+		if (typeUser.toLocaleUpperCase() === 'AUTOR') {	
 			const article = new Article();
 			article.title = title;
 			article.description = description;
@@ -42,6 +42,17 @@ export default class ArticleService {
 	}
 
 	/**
+	 *Method for view Articles of author
+	 *
+	 * @param {*} email
+	 * @returns
+	 * @memberof ArticleService
+	 */
+	viewArticlesbyIddentifaction(idUser, title) {
+		return getConnection().getRepository(Article).find({ user: {idUser}, title});
+	  }
+
+	/**
 	 *
 	 * Method for view view Categories
 	 * @returns
@@ -50,5 +61,17 @@ export default class ArticleService {
 	viewCategory(nameCategory) {
 		return getConnection().getRepository(Category).createQueryBuilder("category").where("category.nameCategory = :nameCategory", {nameCategory}).getOne();
 	}
+
+	/**
+	 *Method for view Articles of author
+	 *
+	 * @param {*} email
+	 * @returns
+	 * @memberof ArticleService
+	 */
+	viewReviewArticles(idUser) {
+		return getConnection().getRepository(ArticleReview).find({ user: {idUser}});
+	  }
+
 
 }

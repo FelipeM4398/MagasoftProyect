@@ -12,7 +12,7 @@ export default class UserService {
     }
 
     infoUser(identificationUser) {
-        return getConnection().query(`SELECT * FROM user u WHERE u.identificationUser=?`, [identificationUser]);
+        return getConnection().getRepository(User).createQueryBuilder("user").where("user.identificationUser = :identificationUser", {identificationUser}).getOne();
     }
 
 }

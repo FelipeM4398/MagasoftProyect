@@ -20,13 +20,13 @@ export default class User {
     @Column("date")
     birthDateUser: Date
 
-    @Column("varchar", {length: 12})
+    @Column("varchar", {length: 14})
     identificationUser: String
 
-    @Column("varchar", {length: 80})
+    @Column("varchar", {length: 90})
     emailUser: String
 
-    @Column("varchar", {length: 80})
+    @Column("varchar", {length: 90})
     passwordUser: String
 
     @Column("varchar",
